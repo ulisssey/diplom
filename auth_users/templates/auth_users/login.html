@@ -1,0 +1,16 @@
+{% extends 'auth_users/layout.html' %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+  <div class="container1">
+      <form method="post" action="">
+          {% csrf_token %}
+          <label>Логин</label>
+          <input name="username" type="text" placeholder="Логинді енгізіңіз">
+
+          <label>Пароль</label>
+          <input name="password" type="password" placeholder="Парольді енгізіңіз" >
+
+          <input type="submit" value="Кіру">
+      </form>
+  </div>
+{% endblock %}

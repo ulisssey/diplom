@@ -1,0 +1,11 @@
+{% extends 'auth_users/layout.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <div class="container2">
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Құру">
+        </form>
+    </div>
+{% endblock %}
