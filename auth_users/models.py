@@ -13,7 +13,7 @@ class Item(models.Model):
     description = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images/')
     price = models.IntegerField()
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, default='Nothing')
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import UserForm
-from .models import Item
+from .models import Item, Categories
 
 
 def index(request):
@@ -40,4 +40,11 @@ def logout_user(request):
 
 
 def categories(request):
-    return render(request, 'auth_users/categories.html')
+    items = Categories.objects.all()
+    return render(request, 'auth_users/categories.html', {'items': items})
+
+
+def category(request, categories):
+    items = Item.objects.all().filter(category__categories=categories)
+    print(items)
+    return render(request, 'auth_users/category.html', {'items': items})
