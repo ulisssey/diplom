@@ -4,13 +4,20 @@
   <div class="container1">
       <form method="post" action="">
           {% csrf_token %}
+          <div class="lgn">
           <label>Логин</label>
           <input name="username" type="text" placeholder="Логинді енгізіңіз">
+          </div>
 
+          <div class="lgn">
           <label>Пароль</label>
           <input name="password" type="password" placeholder="Парольді енгізіңіз" >
+          </div>
 
+          <div class="lgn">
           <input type="submit" value="Кіру">
+              <p>Аккаунтыңыз жоқ па? <a href="{% url 'register' %}">Тіркелу</a></p>
+          </div>
       </form>
   </div>
 {% endblock %}

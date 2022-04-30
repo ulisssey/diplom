@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import UserForm
 from .models import Item, Categories
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -48,3 +49,8 @@ def category(request, categories):
     items = Item.objects.all().filter(category__categories=categories)
     print(items)
     return render(request, 'auth_users/category.html', {'items': items})
+
+
+def profile(request, pk):
+    user = User.objects.get(id=pk)
+    return render(request, 'auth_users/profile.html', {'user': user})
