@@ -29,17 +29,17 @@
               <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Бас Парақша</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Таңдаулар</a>
+              <a class="nav-link" href="{% url 'show_watchlist' %}">Таңдаулар</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'categories' %}">Категориялар</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Контактілер</a>
+              <a class="nav-link" href="{% url 'contacts' %}">Контактілер</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Іздеу" aria-label="Search">
+          <form class="d-flex" method="get" action="{% url 'search' %}">
+            <input class="form-control me-2" name="search" type="search" placeholder="Іздеу" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Іздеу</button>
           </form>
         </div>

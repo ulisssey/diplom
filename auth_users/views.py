@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import UserForm
 from .models import Item, Categories
 from django.contrib.auth.models import User
+from . models import Watchlist
 
 
 def index(request):
@@ -54,3 +55,29 @@ def category(request, categories):
 def profile(request, pk):
     user = User.objects.get(id=pk)
     return render(request, 'auth_users/profile.html', {'user': user})
+
+
+def get_watch_list(request, pk):
+    wl = Watchlist()
+    wl.watchlist = pk
+    wl.author_id = request.user.id
+    wl.save()
+    return redirect('index')
+
+
+def show_watchlist(request):
+    items = []
+    for wl in Watchlist.objects.all().filter(author_id=request.user.id):
+        items.append(Item.objects.get(id=wl.watchlist))
+    return render(request, 'auth_users/watchlist.html', {'items': items})
+
+
+def contacts(request):
+    return render(request, 'auth_users/contacts.html')
+
+
+def search(request):
+    if request.method == 'GET':
+        q = request.GET['search']
+        items = Item.objects.filter(title__icontains=q)
+        return render(request, 'auth_users/search.html', {'items': items})
