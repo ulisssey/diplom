@@ -17,10 +17,19 @@
     margin-bottom: 10px;
 }
 .container-item {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 30px;
     width: 300px;
     border: 1px solid grey;
+    border-radius: 20px;
+    box-shadow: 0px 0px 7px purple;
+}
+.container{
+    width: 300px;
+    height: 250px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
 }
 .container-1 {
     width: 300px;
@@ -36,7 +45,10 @@
     padding-left: 30px;
     font-size: 14px;
 }
-.img-1 {
-    max-width: 100%;
-    height: auto;
+#img-1 {
+    width: auto;
+    height: 200px;
+}
+#form-1 {
+    margin-right: 5px;
 }

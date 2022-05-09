@@ -72,10 +72,6 @@ def show_watchlist(request):
     return render(request, 'auth_users/watchlist.html', {'items': items})
 
 
-def contacts(request):
-    return render(request, 'auth_users/contacts.html')
-
-
 def search(request):
     if request.method == 'GET':
         q = request.GET['search']

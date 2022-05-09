@@ -12,6 +12,5 @@ urlpatterns = [
     path('profile/<str:pk>', views.profile, name='profile'),
     path('watchlist/<str:pk>', views.get_watch_list, name='watchlist'),
     path('watchlist/', views.show_watchlist, name='show_watchlist'),
-    path('contacts/', views.contacts, name='contacts'),
     path('search/', views.search, name='search')
 ]

@@ -1,23 +1,18 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Log In{% endblock %}
 {% block content %}
-  <div class="container1">
+  <div class="container">
       <form method="post" action="">
           {% csrf_token %}
-          <div class="lgn">
-          <label>Логин</label>
-          <input name="username" type="text" placeholder="Логинді енгізіңіз">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Логин</label>
+            <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
-
-          <div class="lgn">
-          <label>Пароль</label>
-          <input name="password" type="password" placeholder="Парольді енгізіңіз" >
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Пароль</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
           </div>
-
-          <div class="lgn">
-          <input type="submit" value="Кіру">
-              <p>Аккаунтыңыз жоқ па? <a href="{% url 'register' %}">Тіркелу</a></p>
-          </div>
-      </form>
+          <button type="submit" class="btn btn-secondary">Кіру</button>
+        </form>
   </div>
 {% endblock %}

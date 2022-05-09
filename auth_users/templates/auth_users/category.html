@@ -1,20 +1,31 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Бас Парақша{% endblock %}
 {% block content %}
-    <div class="wrapper">
-        <div class="container-all-item">
-            {% for item in items %}
-                <div class="container-item">
-                    <div class="container-1">
-                        <img class="img-1" src="{{ item.image.url }}">
-                    </div>
-                    <div class="container-2">
-                        <h4>{{ item.title }}</h4>
-                        <p>Бағасы: {{ item.price }} тенге</p>
-                        <p>{{ item }}...</p>
-                    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col">
+                <div class="container-all-item">
+                    {% for item in items %}
+                        <div class="container-item">
+                            <div class="container-1">
+                                <img id="img-1" src="{{ item.image.url }}" alt="{{ item.image }}">
+                            </div>
+                            <div class="container-2">
+                                <h4>{{ item.title }}</h4>
+                                <p>Бағасы: {{ item.price }} тенге</p>
+                                <p>{{ item }}...</p>
+                                <form method="post" action="{% url 'watchlist' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-info">Таңдауларға қосу</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
