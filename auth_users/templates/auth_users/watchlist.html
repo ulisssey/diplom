@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
 
             </div>
             <div class="col">
@@ -13,10 +13,20 @@
                             <div class="container-1">
                                 <img id="img-1" src="{{ item.image.url }}" alt="{{ item.image }}">
                             </div>
+
                             <div class="container-2">
                                 <h4>{{ item.title }}</h4>
                                 <p>Бағасы: {{ item.price }} тенге</p>
                                 <p>{{ item }}...</p>
+                                <hr>
+                                <form method="post" action="{% url 'watchlist' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-info">Таңдауларға қосу</button>
+                                </form>
+                                <form id='form-1' method="post" action="{% url 'cart' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-info">Себетке қосу</button>
+                                </form>
                             </div>
                         </div>
                     {% endfor %}

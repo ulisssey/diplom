@@ -27,3 +27,8 @@ class Item(models.Model):
 class Watchlist(models.Model):
     watchlist = models.CharField(max_length=200, null=True, blank=True)
     author_id = models.CharField(max_length=50, null=True)
+
+
+class CartItem(models.Model):
+    cart_item = models.CharField(max_length=200, null=True, blank=True)
+    author_id = models.CharField(max_length=50, null=True)

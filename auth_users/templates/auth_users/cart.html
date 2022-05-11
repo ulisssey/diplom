@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
+            <div class="col-1">
 
             </div>
             <div class="col">
@@ -13,7 +13,6 @@
                             <div class="container-1">
                                 <img id="img-1" src="{{ item.image.url }}" alt="{{ item.image }}">
                             </div>
-
                             <div class="container-2">
                                 <h4>{{ item.title }}</h4>
                                 <p>Бағасы: {{ item.price }} тенге</p>
@@ -23,9 +22,9 @@
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-outline-info">Таңдауларға қосу</button>
                                 </form>
-                                <form id='form-1' method="post" action="{% url 'cart' item.id %}">
+                                <form id='form-1' method="post" action="{% url 'del-cart-item' item.id %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-outline-info">Себетке қосу</button>
+                                    <button type="submit" class="btn btn-outline-danger">Себеттен жою</button>
                                 </form>
                             </div>
                         </div>
