@@ -6,4 +6,13 @@
         <p>{{ user.first_name }} {{ user.last_name }}</p>
         <p>{{ user.email }}</p>
     </div>
+    <form action="" method="post">
+        <label>Қалаңызды енгізіңіз</label>
+        <input name="city" type="text">
+        <label>Көшеңізді енгізіңіз</label>
+        <input name="street" type="text">
+        <label >Пәтеріңізді енгізіңіз</label>
+        <input name="apartment" type="text">
+        <button type="submit" class="btn btn-outline-info">Сақтау</button>
+    </form>
 {% endblock %}

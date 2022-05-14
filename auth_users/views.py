@@ -1,10 +1,20 @@
+import json
+
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import UserForm
-from .models import Item, Categories, Watchlist, OrderItem, Order
+from .models import Item, Categories, Watchlist, OrderItem, Order, Address
+
+
+import stripe
+
+
+stripe.api_key = settings.STRIPE_SECRERT_KEY
 
 
 def index(request):
@@ -53,8 +63,15 @@ def category(request, categories):
     return render(request, 'auth_users/category.html', {'items': items})
 
 
+@csrf_exempt
 def profile(request, pk):
     user = User.objects.get(id=pk)
+    if request.method == 'POST':
+        city = request.POST.get('city')
+        street = request.POST.get('street')
+        apartment = request.POST.get('apartment')
+        address = Address(user=request.user, city=city, street_address=street, apartment=apartment)
+        address.save()
     return render(request, 'auth_users/profile.html', {'user': user})
 
 
@@ -138,3 +155,5 @@ def delete_single_item(request, pk):
             order.items.remove(order_item)
             OrderItem.objects.filter(user=request.user, ordered=False, item=item).delete()
     return redirect('show_cart')
+
+
