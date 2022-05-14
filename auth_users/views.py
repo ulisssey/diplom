@@ -14,7 +14,7 @@ from .models import Item, Categories, Watchlist, OrderItem, Order, Address
 import stripe
 
 
-stripe.api_key = settings.STRIPE_SECRERT_KEY
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def index(request):
@@ -122,8 +122,11 @@ def add_to_cart(request, pk):
 
 
 def show_cart(request):
-    order = Order.objects.get(user=request.user, ordered=False)
-    return render(request, 'auth_users/cart.html', {'object': order})
+    order = Order.objects.filter(user=request.user, ordered=False).first()
+    if order:
+        return render(request, 'auth_users/cart.html', {'object': order})
+    else:
+        return redirect('/')
 
 
 def increase_quantity(request, pk):
@@ -157,3 +160,26 @@ def delete_single_item(request, pk):
     return redirect('show_cart')
 
 
+def create_checkout_session(request):
+    order = Order.objects.filter(user=request.user, ordered=False).first()
+    checkout_session = stripe.checkout.Session.create(
+        line_items=[
+                {
+                    # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                    'price': 'price_1KzOhsJDXNrbTgqZnK7CMD0C',
+                    'quantity': 1,
+                },
+            ],
+        mode='payment',
+        success_url='http://127.0.0.1:8000/' + 'success/',
+        cancel_url='http://127.0.0.1:8000/' + 'cancel/',
+    )
+    return redirect(checkout_session.url, code=303)
+
+
+def success(request):
+    return render(request, 'auth_users/success.html')
+
+
+def cancel(request):
+    return render(request, 'auth_users/cancel.html')
