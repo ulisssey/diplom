@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from .forms import UserForm
-from .models import Item, Categories
 from django.contrib.auth.models import User
-from . models import Watchlist, CartItem
+from django.utils import timezone
+
+from .forms import UserForm
+from .models import Item, Categories, Watchlist, OrderItem, Order
 
 
 def index(request):
@@ -88,25 +89,26 @@ def search(request):
         return render(request, 'auth_users/search.html', {'items': items})
 
 
-def get_cart_items(request, pk):
-    ci = CartItem.objects.all().filter(author_id=request.user.id, cart_item=pk)
-    if ci:
-        return redirect('index')
+def add_to_cart(request, pk):
+    ordered_date = timezone.now()
+    item = Item.objects.get(id=pk)
+    order_item = OrderItem(user=request.user, item=item, ordered=False)
+    order_item.save()
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(item=item).exists():
+            order_item.quantity += 1
+            order_item.save()
+            return redirect('show_cart')
+        else:
+            order.items.add(order_item)
     else:
-        ci = CartItem()
-        ci.cart_item = pk
-        ci.author_id = request.user.id
-        ci.save()
-        return redirect('show_cart')
+        order = Order.objects.create(user=request.user, ordered_date=ordered_date)
+        order.items.add(order_item)
+    return redirect('/')
 
 
-def show_cart_items(request):
-    items = []
-    for ci in CartItem.objects.all().filter(author_id=request.user.id):
-        items.append(Item.objects.get(id=ci.cart_item))
-    return render(request, 'auth_users/cart.html', {'items': items})
-
-
-def del_cart_item(request, pk):
-    CartItem.objects.all().filter(author_id=request.user.id, cart_item=pk).delete()
-    return redirect('show_cart')
+def show_cart(request):
+    order = Order.objects.get(user=request.user, ordered=False)
+    return render(request, 'auth_users/cart.html', {'object': order})
