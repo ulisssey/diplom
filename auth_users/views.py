@@ -97,12 +97,7 @@ def add_to_cart(request, pk):
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
-        if order.items.filter(item=item).exists():
-            order_item.quantity += 1
-            order_item.save()
-            return redirect('show_cart')
-        else:
-            order.items.add(order_item)
+        order.items.add(order_item)
     else:
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
@@ -112,3 +107,34 @@ def add_to_cart(request, pk):
 def show_cart(request):
     order = Order.objects.get(user=request.user, ordered=False)
     return render(request, 'auth_users/cart.html', {'object': order})
+
+
+def increase_quantity(request, pk):
+    item = Item.objects.get(id=pk)
+    order_item = OrderItem.objects.filter(user=request.user, item=item).first()
+    order_item.quantity += 1
+    order_item.save()
+    return redirect('show_cart')
+
+
+def decrease_quantity(request, pk):
+    item = Item.objects.get(id=pk)
+    order_item = OrderItem.objects.filter(user=request.user, item=item).first()
+    if order_item.quantity > 0:
+        order_item.quantity -= 1
+        order_item.save()
+    return redirect('show_cart')
+
+
+def delete_single_item(request, pk):
+    item = Item.objects.get(id=pk)
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(item=item).exists():
+            order_item = OrderItem.objects.filter(
+                user=request.user, ordered=False, item=item
+            )[0]
+            order.items.remove(order_item)
+            OrderItem.objects.filter(user=request.user, ordered=False, item=item).delete()
+    return redirect('show_cart')
