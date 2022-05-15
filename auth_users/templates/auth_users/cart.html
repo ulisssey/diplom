@@ -53,9 +53,11 @@
         </tr>
         <tr>
         	<td colspan="5">
-        		<a href="{% url 'create-checkout-session' %}" class="btn btn-warning float-right ml-2">Checkout</a>
+                <form action="{% url 'create-checkout-session' %}" method="post">
+                    <input type="hidden" name="order-id" value="{{ object.id }}">
+                    <button type="submit" class="btn btn-warning float-right ml-2">Checkout</button>
+                </form>
         		<a href="/" class="btn btn-primary float-right">Continue Shopping</a>
-
         	</td>
         </tr>
         {% endif %}

@@ -1,4 +1,7 @@
+import datetime
 import json
+
+from django.http import HttpResponse
 
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
@@ -14,6 +17,7 @@ from .models import Item, Categories, Watchlist, OrderItem, Order, Address
 import stripe
 
 
+endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -160,13 +164,21 @@ def delete_single_item(request, pk):
     return redirect('show_cart')
 
 
+@csrf_exempt
 def create_checkout_session(request):
-    order = Order.objects.filter(user=request.user, ordered=False).first()
+    order_id = request.POST.get('order-id')
+    order = Order.objects.filter(id=order_id).first()
     checkout_session = stripe.checkout.Session.create(
         line_items=[
                 {
                     # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                    'price': 'price_1KzOhsJDXNrbTgqZnK7CMD0C',
+                    'price_data': {
+                        'currency': 'kzt',
+                        'unit_amount': order.get_total()*100,
+                        'product_data': {
+                            'name': order_id,
+                        },
+                    },
                     'quantity': 1,
                 },
             ],
@@ -175,6 +187,44 @@ def create_checkout_session(request):
         cancel_url='http://127.0.0.1:8000/' + 'cancel/',
     )
     return redirect(checkout_session.url, code=303)
+
+
+@csrf_exempt
+def my_webhook_view(request):
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+        # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+
+        if session.payment_status == 'paid':
+            # Fulfill the purchase...
+            line_item = session.list_line_items(session.id, limit=1).data[0]
+            order_id = line_item['description']
+            fulfill_order(order_id)
+    # Passed signature verification
+    return HttpResponse(status=200)
+
+
+def fulfill_order(order_id):
+    order = Order.objects.filter(id=order_id).first()
+    order.ordered = True
+    order.ordered_date = datetime.datetime.now()
+    order.save()
+    print("Fulfilling order")
 
 
 def success(request):
