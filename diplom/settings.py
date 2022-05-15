@@ -41,6 +41,9 @@ INSTALLED_APPS = [
 ]
 
 
+CRISPY_TEMPLATE_PACK = 'uni_form'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,10 +81,10 @@ WSGI_APPLICATION = 'diplom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'diplom',
-        'USER': 'ulissey',
+        'NAME': 'diplom-1',
+        'USER': 'ulisssey',
         'PASSWORD': '21219725et',
-        'HOST': 'localhost',
+        'HOST': 'diplom-1.cfhfnz8ijl5e.us-west-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }

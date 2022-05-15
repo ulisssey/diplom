@@ -1,6 +1,11 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Log In{% endblock %}
 {% block content %}
+<style>
+    #btn-1{
+        display: block;
+    }
+</style>
   <div class="container">
       <form method="post" action="">
           {% csrf_token %}
@@ -12,7 +17,8 @@
             <label for="exampleInputPassword1" class="form-label">Пароль</label>
             <input name="password" type="password" class="form-control" id="exampleInputPassword1">
           </div>
-          <button type="submit" class="btn btn-secondary">Кіру</button>
+          <button id='btn-1' type="submit" class="btn btn-secondary">Кіру</button>
+          <a href="{% url 'register' %}">Жаңа аккаунт құру</a>
         </form>
   </div>
 {% endblock %}

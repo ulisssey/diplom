@@ -249,7 +249,7 @@ def fulfill_order(order_id):
 
 
 def success(request):
-    return render(request, 'auth_users/success.html')
+    return redirect('show_cart')
 
 
 def cancel(request):

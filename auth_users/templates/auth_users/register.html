@@ -1,11 +1,13 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
+{% load crispy_forms_tags %}
+
     <div class="container2">
-        <form method="post" action="">
+        <form method="post" action="" class="uniForm">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Құру">
+            {{ form|crispy }}
+            <button id='btn-1' type="submit" class="btn btn-secondary">Кіру</button>
         </form>
     </div>
 {% endblock %}
