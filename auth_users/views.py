@@ -1,5 +1,4 @@
 import datetime
-import json
 
 from django.http import HttpResponse
 
@@ -8,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.conf import settings
+from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import UserForm
@@ -115,9 +115,8 @@ def add_to_cart(request, pk):
     item = Item.objects.get(id=pk)
     order_item = OrderItem(user=request.user, item=item, ordered=False)
     order_item.save()
-    order_qs = Order.objects.filter(user=request.user, ordered=False)
-    if order_qs.exists():
-        order = order_qs[0]
+    order = Order.objects.filter(user=request.user, ordered=False).first()
+    if order.exists():
         order.items.add(order_item)
     else:
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
@@ -168,6 +167,9 @@ def delete_single_item(request, pk):
 def create_checkout_session(request):
     order_id = request.POST.get('order-id')
     order = Order.objects.filter(id=order_id).first()
+    names = []
+    for order_item in order.items.all():
+        names.append(order_item.item.title)
     checkout_session = stripe.checkout.Session.create(
         line_items=[
                 {
@@ -176,12 +178,20 @@ def create_checkout_session(request):
                         'currency': 'kzt',
                         'unit_amount': order.get_total()*100,
                         'product_data': {
-                            'name': order_id,
+                            'name': ', '.join(names),
                         },
                     },
                     'quantity': 1,
                 },
             ],
+        metadata={
+            "order_id": order_id,
+            "email": order.user.email
+        },
+        phone_number_collection={
+            'enabled': True,
+        },
+        customer_email=order.user.email,
         mode='payment',
         success_url='http://127.0.0.1:8000/' + 'success/',
         cancel_url='http://127.0.0.1:8000/' + 'cancel/',
@@ -212,17 +222,28 @@ def my_webhook_view(request):
 
         if session.payment_status == 'paid':
             # Fulfill the purchase...
-            line_item = session.list_line_items(session.id, limit=1).data[0]
-            order_id = line_item['description']
+            order_id = session['metadata']['order_id']
+            print(session)
             fulfill_order(order_id)
+            send_mail(
+                'Тауарды сатып алуыңызбен құтықтаймыз!',
+                'рахмет',
+                settings.EMAIL_HOST_USER,
+                [session['metadata']['email']]
+            )
     # Passed signature verification
     return HttpResponse(status=200)
 
 
 def fulfill_order(order_id):
     order = Order.objects.filter(id=order_id).first()
+    order_item = order.items.all()
     order.ordered = True
     order.ordered_date = datetime.datetime.now()
+    for item in order_item:
+        item.ordered = True
+        item.save()
+    order.shipping_address = Address.objects.filter(user=order.user).first()
     order.save()
     print("Fulfilling order")
 

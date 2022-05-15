@@ -31,6 +31,9 @@ class Address(models.Model):
     apartment = models.CharField(max_length=100)
     default = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"{self.city.capitalize()} қаласы, {self.street_address.capitalize()} көшесі, {self.apartment} пәтер"
+
 
 class OrderItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -45,16 +48,6 @@ class OrderItem(models.Model):
         return self.quantity * self.item.price
 
 
-class Payment(models.Model):
-    stripe_charge_id = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
-    amount = models.FloatField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.username
-
-
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
@@ -62,9 +55,11 @@ class Order(models.Model):
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
     shipping_address = models.ForeignKey(Address, on_delete=models.SET_NULL, blank=True, null=True)
-    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     delivered = models.BooleanField(default=False)
     received = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Заказ №{self.id} {self.user.username}"
 
     def get_total(self):
         total = 0
