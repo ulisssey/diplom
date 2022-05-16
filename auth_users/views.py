@@ -116,8 +116,11 @@ def add_to_cart(request, pk):
     order_item = OrderItem(user=request.user, item=item, ordered=False)
     order_item.save()
     order = Order.objects.filter(user=request.user, ordered=False).first()
-    if order.exists():
-        order.items.add(order_item)
+    if order:
+        if order_item in order.items.all():
+            order_item.quantity += 1
+        else:
+            order.items.add(order_item)
     else:
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)

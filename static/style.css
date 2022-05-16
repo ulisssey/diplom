@@ -1,86 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada&family=Source+Code+Pro:wght@300&display=swap');
 
-.lgn input{
-    display: block;
+body {
+    background: #F1E7E5;
+    margin: 0;
+    font-family: 'Radio Canada', sans-serif;``
 }
-.lgn {
-    margin-top: 10px;
-    margin-left: 30px;
+.navbar {
+    background: #F08A75;
+    padding: 1em;
 }
-#h-1 {
-    font-size: 40px;
-    margin-left: 40px;
+#logo {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 1.3em;
 }
-.container-all-item {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    margin-left: 30px;
-    margin-bottom: 10px;
+#logo span {
+    color: #256FEC;
 }
-.container-item {
-    margin-top: 20px;
-    margin-left: 30px;
-    width: 270px;
-    height: 450px;
-    border: 1px solid grey;
-    border-radius: 20px;
-    box-shadow: 0px 0px 7px purple;
-}
-.container{
-    width: 300px;
-    height: 250px;
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
+nav {
+    display: none;
 }
 .container-1 {
     display: flex;
-    justify-content: center;
+    place-content: space-between;
+}
+.container-1 .mobile-menu {
+    cursor: pointer;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+.container-2 form label, button {
+    display: block;
+}
+.container-2 form label, input, button {
+   margin-bottom: .5em;
 }
 .container-2 {
-    height: 180px;
-    width: 270px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
+    padding: 7em;
+    background: white;
+    border-radius: 15%;
+    box-shadow: 0px 0px 15px 2px grey;
+}
+.container-2 form label {
+    font-size: 1.5em;
+    font-weight: bold;
     margin-top: 5px;
-    padding-left: 30px;
-    font-size: 14px;
+    opacity: 80%;
 }
-.img-1 {
-    width: auto;
-    height: 200px;
+.container-2 form input {
+    border: 1px solid grey;
+    border-radius: 20px;
+    height: 30px;
 }
-#form-1 {
-    margin-right: 5px;
+.container-2 form button {
+    background: white;
+    font-size: 1.2em;
+    margin-top: 5px;
+    border: 2px solid #F08A75;
+    border-radius: 20px;
+    padding: .5em;
+    width: 70px;
+    cursor: pointer;
 }
-#cart {
-    height: 40px;
-    width: auto;
-    margin-right: 5px;
+.container-2 form button:hover {
+    background: #FFBBAC;
 }
-html {
-    height: 100%;
+.container-2 form a {
+    margin-top: 5px;
+    opacity: 65%;
 }
-body {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-#main {
-    margin-bottom: 5em;
-}
-.footer {
-    background-color: black;
-    padding: 2em;
-    margin-top: auto;
-}
-#form-1 {
-    margin-top: 10px;
-}
-.plus-minus {
-    height: auto;
-    width: 25px;
-    opacity: 75%;
-}
-.plus-minus:hover {
-    opacity: 100%;
-    transition: opacity 1s ease-in;
+.container-2 form a:hover {
+    opacity: 90%;
 }

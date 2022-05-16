@@ -1,24 +1,20 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Log In{% endblock %}
 {% block content %}
-<style>
-    #btn-1{
-        display: block;
-    }
-</style>
-  <div class="container">
-      <form method="post" action="">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Логин</label>
-            <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Пароль</label>
-            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-          <button id='btn-1' type="submit" class="btn btn-secondary">Кіру</button>
-          <a href="{% url 'register' %}">Жаңа аккаунт құру</a>
-        </form>
-  </div>
+    <section>
+        <div class="container-2">
+          <form method="post" action="{% url 'login' %}">
+
+                <label for="exampleInputEmail1" class="form-label">Логин</label>
+                <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+
+                <button id='btn-1' type="submit" class="btn btn-secondary">Кіру</button>
+
+                <a href="{% url 'register' %}">Жаңа аккаунт құру</a>
+            </form>
+        </div>
+    </section>
 {% endblock %}
