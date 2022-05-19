@@ -26,20 +26,24 @@ def index(request):
     return render(request, 'auth_users/index.html', {'items': items})
 
 
+@csrf_exempt
 def register(request):
-    form = UserForm()
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('index')
-    return render(request, 'auth_users/register.html', {'form': form})
+        username = request.POST.get('username')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        email = request.POST.get('email')
+        first_name = request.POST.get('firstname')
+        last_name = request.POST.get('lastname')
+        if password1 == password2:
+            User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password1)
+        user = authenticate(username=username, password=password1)
+        login(request, user)
+        return redirect('index')
+    return render(request, 'auth_users/register.html')
 
 
+@csrf_exempt
 def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']

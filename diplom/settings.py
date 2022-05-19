@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'diplom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'diplom-1',
-        'USER': 'ulisssey',
+        'NAME': 'diplom',
+        'USER': 'ulissey',
         'PASSWORD': '21219725et',
-        'HOST': 'diplom-1.cfhfnz8ijl5e.us-west-2.rds.amazonaws.com',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

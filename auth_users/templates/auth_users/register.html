@@ -1,12 +1,29 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
+    <section>
+        <div class="container-3">
+            <form action="{% url 'register' %}" method="post">
+                <label for="firstname">Атыңыз</label>
+                <input name="firstname" type="text" id="firstname" placeholder="Атыңызды енгізіңіз">
 
-    <div class="container2">
-        <form method="post" action="" class="uniForm">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button id='btn-1' type="submit" class="btn btn-secondary">Кіру</button>
-        </form>
-    </div>
+                <label for="lastname">Жөніңіз</label>
+                <input name="lastname" type="text" id="lastname" placeholder="Жөніңізді енгізіңіз">
+
+                <label for="username">Логин</label>
+                <input name="username" type="text" id="username" placeholder="Жаңа логинді енгізіңіз">
+
+                <label for="email">Email</label>
+                <input name="email" type="email" id="email" placeholder="Поштаңызды енгізіңіз">
+
+                <label for="password1">Парольді енгізіңіз</label>
+                <input name="password1" type="password" id="password1" placeholder="Парольді енгізіңіз">
+
+                <label for="password2">Парольді растаңыз</label>
+                <input name="password2" type="password" id="password2" placeholder="Парольді енгізіңіз">
+
+                <button type="submit">Құру</button>
+            </form>
+        </div>
+    </section>
 {% endblock %}
