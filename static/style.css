@@ -1,16 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Radio+Canada&family=Source+Code+Pro:wght@300&display=swap');
 
 body {
-    background: #F1E7E5;
+    background: white;
     margin: 0;
     font-family: 'Radio Canada', sans-serif;``
+    text-decoration: none;
 }
 .navbar {
-    background: #F08A75;
+    background: #F97166;
     padding: 1em;
 }
+nav {
+    position: fixed;
+    z-index: 999;
+    width: 66%;
+    right: 0;
+    top: 0;
+    background: #20272E;
+    height: 100vh;
+    display: none;
+}
+nav.menu-btn {
+    display: block;
+}
+nav .primary-nav {
+    margin-top: 5em;
+    letter-spacing: .1em;
+}
+nav .primary-nav li a  {
+    color: white;
+    display: block;
+    padding: .5em;
+    font-size: 1.3em;
+    text-align: right;
+}
+nav .primary-nav li a:hover  {
+    font-weight: bold;
+}
+#mobile-exit {
+    float: right;
+    margin: .5em;
+    cursor: pointer;
+}
 #logo {
-    text-decoration: none;
     font-weight: bold;
     color: black;
     font-size: 1.3em;
@@ -18,12 +50,12 @@ body {
 #logo span {
     color: #256FEC;
 }
-nav {
-    display: none;
-}
 .container-1 {
     display: flex;
     place-content: space-between;
+}
+.container-1 nav ul {
+    list-style-type: none;
 }
 .container-1 .mobile-menu {
     cursor: pointer;
@@ -36,7 +68,7 @@ a {
     display: block;
 }
 .container-2 form label, input, button {
-   margin-bottom: .5em;
+    margin-bottom: .5em;
 }
 .container-2, .container-3 {
     position: fixed;
@@ -91,11 +123,12 @@ a {
     justify-content: center;
 }
 .item-container {
-    border: 1px solid grey;
+    border: none;
     border-radius: 30px;
     margin: 5px;
     width: 200px;
     height: 300px;
+    box-shadow: 0px 0px 3px 0px red;
 }
 .item-container-img-1 {
     height: 150px;
@@ -151,4 +184,42 @@ a {
 }
 #title {
     margin-left: 10px;
+}
+@media only screen and (min-width: 720px) {
+    .mobile-menu, .mobile-menu-exit {
+        display: none;
+    }
+    .navbar .container-1 {
+        display: grid;
+        grid-template-columns: 180px auto;
+        justify-content: unset;
+    }
+    .navbar nav {
+        display: flex;
+        justify-content: space-between;
+        background: none;
+        position: unset;
+        height: auto;
+        width: 100%;
+        padding: 0;
+    }
+    .navbar nav ul {
+        display: flex;
+    }
+    nav .links {
+
+    }
+    nav .primary-nav {
+        margin: 0;
+        color: black;
+        font-size: .7em;
+        padding: .1em 1em;
+    }
+    .wallpaper {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
 }
