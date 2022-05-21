@@ -1,11 +1,13 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Бас Парақша{% endblock %}
 {% block content %}
-    <div class="wrapper">
-        <ul>
-            {% for item in items %}
-                <li><a href="{% url 'category' item %}">{{ item }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
+    <section>
+        <div class="wrapper">
+            <ul>
+                {% for item in items %}
+                    <li><a href="{% url 'category' item %}">{{ item }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
 {% endblock %}

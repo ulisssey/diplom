@@ -16,11 +16,22 @@
                     </div>
 
                     <div class="buttons">
-                        <a href="{% url 'add-watchlist' item.id %}"><button type="button" id="watchlist-button" class="index-button">Таңдауларға қосу</button></a>
+                        <form action="{% url 'add-watchlist' item.id %}" method="post">
+                            <button type="submit" id="watchlist-button" class="index-button">Таңдауларға қосу</button>
+                        </form>
                         <a href="{% url 'add-cart' item.id %}"><button type="button" id="cart-button" class="index-button">Себетке қосу</button></a>
                     </div>
                 </div>
             {% endfor %}
+        </div>
+        <div class="page-numeration">
+            {% if items.has_previous %}
+                <a href="?page=1">1</a>
+                <a href="?page={{ items.previous_page_number }}">Артқа</a>
+            {% endif %}
+            {% if items.has_next %}
+                <a href="?page= {{ items.next_page_number }}">Келесі</a>
+            {% endif %}
         </div>
     </section>
 

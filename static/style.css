@@ -121,13 +121,14 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 5em;
 }
 .item-container {
     border: none;
     border-radius: 30px;
     margin: 5px;
     width: 200px;
-    height: 300px;
+    height: 320px;
     box-shadow: 0px 0px 3px 0px red;
 }
 .item-container-img-1 {
@@ -144,6 +145,7 @@ a {
 }
 .item-container .title-price {
     margin-left: 5px;
+    line-height: 1.3em;
 }
 .item-container .title-price p {
     margin-top: -20px;
@@ -178,12 +180,58 @@ a {
     cursor: pointer;
     transition: .5s
 }
+.del-button {
+    height: 30px;
+    border-radius: 20px;
+    background: none;
+    font-weight: bold;
+    border: 1px solid grey;
+}
+.del-button:hover {
+    background: #FF5151;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+}
 .wallpaper img {
     height: 100%;
     width: 100%;
 }
 #title {
     margin-left: 10px;
+}
+.page-numeration {
+    color: black;
+    text-align: center;
+    margin-top: -50px;
+}
+.page-numeration a {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: .4em;
+}
+.page-numeration a:hover {
+    background: #F4ECEC;
+    padding: .5em;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+.wrapper ul {
+    list-style: none;
+}
+.wrapper ul li a{
+    font-size: 1.3em;
+    border: 2px solid #FEE374;
+    border-radius: 20px;
+    padding: .3em;
+}
+.wrapper ul li a:hover{
+    background: #FFEDA4;
+}
+.wrapper ul li {
+    margin-top: 30px;
 }
 @media only screen and (min-width: 720px) {
     .mobile-menu, .mobile-menu-exit {
@@ -216,7 +264,7 @@ a {
         padding: .1em 1em;
     }
     .wallpaper {
-        width: 50%;
+        width: 40%;
         display: flex;
         justify-content: center;
         align-items: center;

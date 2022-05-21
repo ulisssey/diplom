@@ -11,7 +11,7 @@
     <header>
         <div class="navbar">
             <div class="container-1">
-                <a id='logo' href="#">Mina<span>zuki</span></a>
+                <a id='logo' href="{% url 'index' %}">Mina<span>zuki</span></a>
 
                 <img id='mobile-cta' class="mobile-menu" src="{% static 'media/images/menu.png' %}" alt="menu">
                 
@@ -19,9 +19,9 @@
                     <img id="mobile-exit" class="mobile-menu-exit" src="{% static 'media/images/close.png' %}" alt="x">
 
                     <ul class="primary-nav">
-                        <li class="current"><a class="links" href="{% url 'index' %}">Бас парақша</a></li>
-                        <li><a class="links" href="{% url 'show_watchlist' %}">Таңдаулар</a></li>
-                        <li><a class="links" href="{% url 'show_watchlist' %}">Категориялар</a></li>
+                        <li class="current"><a class="links" href="{% url 'index' %}?page=1">Бас парақша</a></li>
+                        <li><a class="links" href="{% url 'show_watchlist' %}?page=1">Таңдаулар</a></li>
+                        <li><a class="links" href="{% url 'show_categories' %}">Категориялар</a></li>
                     </ul>
                 </nav>
             </div>

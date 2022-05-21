@@ -1,37 +1,38 @@
 {% extends 'auth_users/layout.html' %}
 {% block title %}Бас Парақша{% endblock %}
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-2">
+    <h2 id="title">{{ category }}</h2>
+    <section>
+        <div class="container-4">
+            {% for item in items %}
+                <div class="item-container">
+                    <div class="item-container-img-1">
+                        <img src="{{ item.image.url }}" alt="фото">
+                    </div>
 
-            </div>
-            <div class="col">
-                <div class="container-all-item">
-                    {% for item in items %}
-                        <div class="container-item">
-                            <div class="container-1">
-                                <img class="img-1" src="{{ item.image.url }}" alt="{{ item.image }}">
-                            </div>
+                    <div class="title-price">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.price }}тг</p>
+                    </div>
 
-                            <div class="container-2">
-                                <h4>{{ item.title }}</h4>
-                                <p>Бағасы: {{ item.price }} тенге</p>
-                                <p>{{ item }}...</p>
-                                <hr>
-                                <form method="post" action="{% url 'watchlist' item.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-outline-info">Таңдауларға қосу</button>
-                                </form>
-                                <form id='form-1' method="post" action="{% url 'cart' item.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-outline-info">Себетке қосу</button>
-                                </form>
-                            </div>
-                        </div>
-                    {% endfor %}
+                    <div class="buttons">
+                        <form action="{% url 'add-watchlist' item.id %}" method="post">
+                            <button type="submit" id="watchlist-button" class="index-button">Таңдауларға қосу</button>
+                        </form>
+                        <a href="{% url 'add-cart' item.id %}"><button type="button" id="cart-button" class="index-button">Себетке қосу</button></a>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    </div>
+        <div class="page-numeration">
+            {% if items.has_previous %}
+                <a href="?page=1">1</a>
+                <a href="?page={{ items.previous_page_number }}">Артқа</a>
+            {% endif %}
+            {% if items.has_next %}
+                <a href="?page= {{ items.next_page_number }}">Келесі</a>
+            {% endif %}
+        </div>
+    </section>
+
 {% endblock %}

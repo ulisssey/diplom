@@ -8,9 +8,9 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 
-from .forms import UserForm
 from .models import Item, Categories, Watchlist, OrderItem, Order, Address
 
 
@@ -23,7 +23,11 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def index(request):
     items = Item.objects.all()
-    return render(request, 'auth_users/index.html', {'items': items})
+    p = Paginator(items, 6)
+    page_num = request.GET.get('page', '1')
+    page = p.page(page_num)
+    nums = [x for x in range(1, p.num_pages+1)]
+    return render(request, 'auth_users/index.html', {'items': page, 'nums': nums})
 
 
 @csrf_exempt
@@ -67,8 +71,12 @@ def categories(request):
 
 def category(request, categories):
     items = Item.objects.all().filter(category__categories=categories)
-    print(items)
-    return render(request, 'auth_users/category.html', {'items': items})
+    p = Paginator(items, 6)
+    page_num = request.GET.get('page', '1')
+    page = p.page(page_num)
+    nums = [x for x in range(1, p.num_pages + 1)]
+    category = items[0].category
+    return render(request, 'auth_users/category.html', {'items': page, 'nums': nums, 'category': category})
 
 
 @csrf_exempt
@@ -83,6 +91,7 @@ def profile(request, pk):
     return render(request, 'auth_users/profile.html', {'user': user})
 
 
+@csrf_exempt
 def get_watch_list(request, pk):
     wl = Watchlist.objects.all().filter(author_id=request.user.id, watchlist=pk)
     if wl:
@@ -95,6 +104,7 @@ def get_watch_list(request, pk):
         return redirect('index')
 
 
+@csrf_exempt
 def del_watch_list(request, pk):
     Watchlist.objects.all().filter(author_id=request.user.id, watchlist=pk).delete()
     return redirect('show_watchlist')
@@ -104,7 +114,11 @@ def show_watchlist(request):
     items = []
     for wl in Watchlist.objects.all().filter(author_id=request.user.id):
         items.append(Item.objects.get(id=wl.watchlist))
-    return render(request, 'auth_users/watchlist.html', {'items': items})
+    p = Paginator(items, 6)
+    page_num = request.GET.get('page', '1')
+    page = p.page(int(page_num))
+    nums = [x for x in range(1, p.num_pages + 1)]
+    return render(request, 'auth_users/watchlist.html', {'items': page, 'nums': nums})
 
 
 def search(request):
