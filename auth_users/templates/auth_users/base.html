@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <header>
+        <div class="background">
+            <img src="{% static 'media/images/layout1.jpg' %}" alt="">
+        </div>
+        <div class="overlay">
+            <nav>
+                <ul class="first-nav">
+                    <li><a href="{% url 'index' %}"><img id="logo" src="{% static 'media/images/engine.png' %}" alt="logo"></a></li>
+                    <li><a href="{% url 'index' %}">Home Page</a></li>
+                    <li><a href="{% url 'show_categories' %}">Categories</a></li>
+                    <li><a href="{% url 'show_watchlist' %}">Watchlist</a></li>
+                </ul>
+
+                <div class="form">
+                    <form action="" method="get">
+                        <input type="text" name="q" placeholder="Іздеу">
+                        <button><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
+                    </form>
+                </div>
+
+                <ul class="second-nav">
+                    <li><img src="{% static 'media/images/user.png' %}" alt=""></li>
+                    <li><img src="{% static 'media/images/cart.png' %}" alt=""></li>
+                    <li><a href="">Log In</a></li>
+                </ul>
+            </nav>
+
+            <div class="main-text">
+                <h1>Lorem ipsum</h1>
+                <p>dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="main">
+            <h2>You can find details and accessories for this models</h2>
+            <div class="models">
+                <img class="car-logo" src="{% static 'media/images/mazda.png' %}" alt="">
+                <img class="car-logo" src="{% static 'media/images/audi.png' %}" alt="">
+                <img class="car-logo" src="{% static 'media/images/chevrolet.png' %}" alt="">
+                <img class="car-logo" src="{% static 'media/images/mitsubishi.png' %}" alt="">
+                <img class="car-logo" src="{% static 'media/images/bmw.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+
+    <div class="section">
+        <p id="category-title">Categories</p>
+        <div class="categories">
+            <div class="category">
+                <ul>
+                    <li>
+                        <img src="{% static 'media/images/car-parts.png' %}" alt="">
+                        <hr>
+                        <p>Parts</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <img src="{% static 'media/images/electronic.png' %}" alt="">
+                        <hr>
+                        <p>Electronics</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <img src="{% static 'media/images/accessories.png' %}" alt="">
+                        <hr>
+                        <p>Accessories</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <img src="{% static 'media/images/chemistry.png' %}" alt="">
+                        <hr>
+                        <p>Chemistry</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <img src="{% static 'media/images/krasniy.png' %}" alt="">
+                        <hr>
+                        <p>Against Rust</p>
+                    </li>
+                </ul>
+            </div>
+            <img id="car-engine" src="{% static 'media/images/car-engine.png' %}" alt="">
+        </div>
+    </div>
+
+    <div class="footer">
+        <img src="{% static 'media/images/vk.png' %}" alt="">
+        <img src="{% static 'media/images/instagram.png' %}" alt="">
+        <img src="{% static 'media/images/facebook.png' %}" alt="">
+        <img src="{% static 'media/images/twitter.png' %}" alt="">
+    </div>
+</body>
+</html>

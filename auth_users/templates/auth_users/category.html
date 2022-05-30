@@ -1,38 +1,72 @@
-{% extends 'auth_users/layout.html' %}
-{% block title %}Бас Парақша{% endblock %}
-{% block content %}
-    <h2 id="title">{{ category }}</h2>
-    <section>
-        <div class="container-4">
-            {% for item in items %}
-                <div class="item-container">
-                    <div class="item-container-img-1">
-                        <img src="{{ item.image.url }}" alt="фото">
-                    </div>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <nav>
+                <ul class="first-nav">
+                    <li><a href="{% url 'index' %}"><img id="logo" src="{% static 'media/images/engine.png' %}" alt="logo"></a></li>
+                    <li><a href="{% url 'index' %}">Home Page</a></li>
+                    <li><a href="{% url 'show_categories' %}">Categories</a></li>
+                    <li><a href="{% url 'show_watchlist' %}">Watchlist</a></li>
+                </ul>
 
-                    <div class="title-price">
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.price }}тг</p>
-                    </div>
-
-                    <div class="buttons">
-                        <form action="{% url 'add-watchlist' item.id %}" method="post">
-                            <button type="submit" id="watchlist-button" class="index-button">Таңдауларға қосу</button>
-                        </form>
-                        <a href="{% url 'add-cart' item.id %}"><button type="button" id="cart-button" class="index-button">Себетке қосу</button></a>
-                    </div>
+                <div class="form">
+                    <form action="" method="get">
+                        <input type="text" name="q" placeholder="Іздеу">
+                        <button><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
+                    </form>
                 </div>
-            {% endfor %}
-        </div>
-        <div class="page-numeration">
-            {% if items.has_previous %}
-                <a href="?page=1">1</a>
-                <a href="?page={{ items.previous_page_number }}">Артқа</a>
-            {% endif %}
-            {% if items.has_next %}
-                <a href="?page= {{ items.next_page_number }}">Келесі</a>
-            {% endif %}
-        </div>
-    </section>
 
-{% endblock %}
+                <ul class="second-nav">
+                    <li><img src="{% static 'media/images/user.png' %}" alt=""></li>
+                    <li><img src="{% static 'media/images/cart.png' %}" alt=""></li>
+                    <li><a href="">Log In</a></li>
+                </ul>
+            </nav>
+
+            <div class="main-text">
+                <h1>Lorem ipsum</h1>
+                <p>dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="category-list">
+        <p id="category-title">Categories</p>
+        <div class="category-items">
+            <ul>
+                {% for item in items %}
+                <li>
+                    <img src="{{ item.image.url }}" alt="">
+                    <hr>
+                    <p>{{ item.title }}</p>
+                    <div class="buttons">
+                        <form action="">
+                            <button id="watchlist-btn" type="submit">Add to watchlist</button>
+                        </form>
+                        <form action="">
+                            <button id="cart-btn" type="submit" >Add to cart</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <img src="{% static 'media/images/vk.png' %}" alt="">
+        <img src="{% static 'media/images/instagram.png' %}" alt="">
+        <img src="{% static 'media/images/facebook.png' %}" alt="">
+        <img src="{% static 'media/images/twitter.png' %}" alt="">
+    </div>
+</body>
+</html>

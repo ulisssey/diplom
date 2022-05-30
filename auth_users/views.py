@@ -27,7 +27,7 @@ def index(request):
     page_num = request.GET.get('page', '1')
     page = p.page(page_num)
     nums = [x for x in range(1, p.num_pages+1)]
-    return render(request, 'auth_users/index.html', {'items': page, 'nums': nums})
+    return render(request, 'auth_users/base.html', {'items': page, 'nums': nums})
 
 
 @csrf_exempt
@@ -65,8 +65,7 @@ def logout_user(request):
 
 
 def categories(request):
-    items = Categories.objects.all()
-    return render(request, 'auth_users/categories.html', {'items': items})
+    return render(request, 'auth_users/categories.html')
 
 
 def category(request, categories):
@@ -142,7 +141,7 @@ def add_to_cart(request, pk):
     else:
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-    return redirect('/')
+    return redirect('index')
 
 
 def show_cart(request):
@@ -270,8 +269,12 @@ def fulfill_order(order_id):
 
 
 def success(request):
-    return redirect('show_cart')
+    return redirect('index')
 
 
 def cancel(request):
     return render(request, 'auth_users/cancel.html')
+
+
+def slider(request):
+    return render(request, 'auth_users/slider.html')

@@ -1,13 +1,86 @@
-{% extends 'auth_users/layout.html' %}
-{% block title %}Бас Парақша{% endblock %}
-{% block content %}
-    <section>
-        <div class="wrapper">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <nav>
+                <ul class="first-nav">
+                    <li><a href="{% url 'index' %}"><img id="logo" src="{% static 'media/images/engine.png' %}" alt="logo"></a></li>
+                    <li><a href="{% url 'index' %}">Home Page</a></li>
+                    <li><a href="{% url 'show_categories' %}">Categories</a></li>
+                    <li><a href="{% url 'show_watchlist' %}">Watchlist</a></li>
+                </ul>
+
+                <div class="form">
+                    <form action="" method="get">
+                        <input type="text" name="q" placeholder="Іздеу">
+                        <button><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
+                    </form>
+                </div>
+
+                <ul class="second-nav">
+                    <li><img src="{% static 'media/images/user.png' %}" alt=""></li>
+                    <li><img src="{% static 'media/images/cart.png' %}" alt=""></li>
+                    <li><a href="">Log In</a></li>
+                </ul>
+            </nav>
+
+            <div class="main-text">
+                <h1>Lorem ipsum</h1>
+                <p>dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="category-list">
+        <p id="category-title">Categories</p>
+        <div class="category-items">
             <ul>
-                {% for item in items %}
-                    <li><a href="{% url 'category' item %}">{{ item }}</a></li>
-                {% endfor %}
+                <a href="{% url 'category' 'Запчасти' %}"><li>
+                    <img src="{% static 'media/images/car-parts.png' %}" alt="">
+                    <hr>
+                    <p>Parts</p>
+                </li></a>
+
+                <a href="{% url 'category' 'Электроника' %}"><li>
+                    <img src="{% static 'media/images/electronic.png' %}" alt="">
+                    <hr>
+                    <p>Electronics</p>
+                </li></a>
+
+                <a href="{% url 'category' 'Аксессуарлар' %}"><li>
+                    <img src="{% static 'media/images/accessories.png' %}" alt="">
+                    <hr>
+                    <p>Accessories</p>
+                </li></a>
+
+                <a href="{% url 'category' 'Автохимия' %}"><li>
+                    <img src="{% static 'media/images/chemistry.png' %}" alt="">
+                    <hr>
+                    <p>Chemistry</p>
+                </li></a>
+
+                <a href="{% url 'category' 'Антикоррозия' %}"><li>
+                    <img src="{% static 'media/images/krasniy.png' %}" alt="">
+                    <hr>
+                    <p>Against Rust</p>
+                </li></a>
             </ul>
         </div>
-    </section>
-{% endblock %}
+    </div>
+
+    <div class="footer">
+        <img src="{% static 'media/images/vk.png' %}" alt="">
+        <img src="{% static 'media/images/instagram.png' %}" alt="">
+        <img src="{% static 'media/images/facebook.png' %}" alt="">
+        <img src="{% static 'media/images/twitter.png' %}" alt="">
+    </div>
+</body>
+</html>

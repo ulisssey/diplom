@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada&family=Source+Code+Pro:wght@300&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Radio Canada', sans-serif;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: .5em;
+    z-index: 999;
+    top: 0;
+    background: #1C2833;
+}
+
+nav li {
+    list-style: none;
+    margin: 0em 1em;
+    font-size: 1.2rem;
+    color: white;
+    padding: .5em;
+    margin: 0 1.125em;
+}
+
+.form {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form form {
+    width: 80%;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    padding: 0em 2em;
+}
+
+.form button {
+    border-radius: 30px;
+    float: right;
+}
+
+nav input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 0em 1em;
+    font-size: 1.2rem;
+    color: white;
+}
+
+::placeholder {
+    color: #E9E5DD;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover {
+    font-weight: bold;
+}
+
+.second-nav li {
+    margin: 0;
+}
+
+.second-nav img, .form img {
+    cursor: pointer;
+}
+
+#search {
+    width: 20px;
+}
+
+.background {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.background img {
+    width: 100%;
+}
+
+.overlay {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    position: absolute;
+    top: 0;
+}
+
+#logo {
+    max-width: 50px;
+    cursor: pointer;
+}
+
+.main-text {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+}
+
+.main-text h1 {
+    font-size: 5rem;
+    letter-spacing: .3em;
+    margin: 0;
+}
+
+.main-text p {
+    font-size: 1.3rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h2 {
+    font-size: 1.5rem;
+}
+
+.models {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.car-logo {
+    width: 150px;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+#category-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2em;
+}
+
+.categories {
+    width: 90%;
+    height: 800px;
+    display: flex;
+}
+
+.category {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.category ul {
+    list-style: none;
+    width: 250px;
+}
+
+.category li {
+    width: 100%;
+    height: 250px;
+    padding: .7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+}
+
+.category li:hover {
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px .7px grey;
+    transition: .5s;
+    width: 110%;
+    height: 260px;
+}
+
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 96%;
+    background-color: black;
+    height: .5px;
+}
+
+.category p{
+    font-size: 1.5rem;
+}
+
+.category img {
+    height: 60%;
+    align-items: center;
+}
+
+#car-engine {
+    height: 50%;
+    margin-top: 20%;
+    margin-left: 10%;
+    animation: circle 5s linear infinite;
+}
+@keyframes circle {
+    from{
+        transform: rotate(0deg)
+                   translate(-30px)
+                   rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg)
+                   translate(-30px)
+                   rotate(-360deg);
+    }
+}
+
+.footer {
+    margin-top: 100px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    background: #BBB5AA;
+    box-shadow: 1px 0px 5px 2px grey;
+}
+.footer img {
+    margin: 1em 1em;
+    width: 32px;
+    height: 32px;
+}
+
+.category-list {
+    margin-top: -23em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-items {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-items ul {
+    list-style: none;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.category-items li {
+    width: 200px;
+    height: 310px;
+    padding: .7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 1em;
+}
+
+.category-items li p {
+    text-align: center;
+    font-size: .9rem;
+}
+
+.category-items li:hover {
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px .7px grey;
+    transition: .5s;
+    width: 210px;
+    height: 315px;
+}
+
+.category-items img {
+    height: 50%;
+    align-items: center;
+}
+
+.category-items a {
+    text-decoration: none;
+    color: black;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons button {
+    border-radius: 30px;
+    border: 1px dotted grey;
+    padding: .5em;
+    margin-top: .5em;
+    font-size: .9rem;
+    cursor: pointer;
+}
+
+#watchlist-btn {
+    background: transparent;
+}
+
+#watchlist-btn:hover {
+    background: #ABEBC6;
+    transition: .4s;
+}
+
+#cart-btn {
+    background: #ABEBC6;
+}
+
+#cart-btn:hover {
+    background: transparent;
+}
