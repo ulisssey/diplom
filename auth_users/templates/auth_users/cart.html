@@ -1,69 +1,81 @@
-{% extends 'auth_users/layout.html' %}
-{% block title %}Бас Парақша{% endblock %}
 {% load static %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h2>Order Summary</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col"></th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Qty</th>
-            <th scope="col">Total Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for order_item in object.items.all %}
-          <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>
-			<img src="{{ order_item.item.image.url }}" style="width: 130px;">
-            </td>
-            <td>{{ order_item.item.title }}</td>
-            <td>{{ order_item.item.price }}</td>
-            <td>
-            	<a href="{% url 'decrease-q' order_item.item.id %}"><img class="plus-minus" src="{% static 'media/images/minus.png' %}" alt="minus"></a>
-            	{{ order_item.quantity }}
-            	<a href="{% url 'increase-q' order_item.item.id %}"><img class="plus-minus" src="{% static 'media/images/plus.png' %}" alt="plus"></a>
-            </td>
-            <td>
-                  ${{ order_item.get_total_price }}
-              <a style="color: red" href="/">
-              	<i class="fas fa-trash float-right"></i>
-              </a>
-            </td>
-              <td><a href="{% url 'delete-item' order_item.item.id %}">Delete</a></td>
-          </tr>
-          {% empty %}
-          <tr>
-			<td colspan="5">Your cart is empty</td>
-          </tr>
-        </tbody>
-        {% endfor %}
-        {% if object.get_total %}
-        <tr>
-        	<td colspan="5"><b>Order Total : </b></td>
-        	<td><b>${{ object.get_total }}</b></td>
-        </tr>
-        <tr>
-        	<td colspan="5">
-                <form action="{% url 'create-checkout-session' %}" method="post">
-                    <input type="hidden" name="order-id" value="{{ object.id }}">
-                    <button type="submit" class="btn btn-warning float-right ml-2">Checkout</button>
-                </form>
-        		<a href="/" class="btn btn-primary float-right">Continue Shopping</a>
-        	</td>
-        </tr>
-        {% endif %}
-      </table>
-    </div>
-  </div>
-</div>
+    {% include 'auth_users/navbar.html' %}
 
-{% endblock content %}
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2>Order Summary</h2>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Total Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for order_item in object.items.all %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>
+                    <img src="{{ order_item.item.image.url }}" style="width: 130px;">
+                    </td>
+                    <td>{{ order_item.item.title }}</td>
+                    <td>{{ order_item.item.price }}</td>
+                    <td>
+                        <a href="{% url 'decrease-q' order_item.item.id %}"><img class="plus-minus" src="{% static 'media/images/minus.png' %}" alt="minus"></a>
+                        {{ order_item.quantity }}
+                        <a href="{% url 'increase-q' order_item.item.id %}"><img class="plus-minus" src="{% static 'media/images/plus.png' %}" alt="plus"></a>
+                    </td>
+                    <td>
+                          ${{ order_item.get_total_price }}
+                      <a style="color: red" href="/">
+                        <i class="fas fa-trash float-right"></i>
+                      </a>
+                    </td>
+                      <td><a href="{% url 'delete-item' order_item.item.id %}">Delete</a></td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="5">Your cart is empty</td>
+                  </tr>
+                </tbody>
+                {% endfor %}
+                {% if object.get_total %}
+                <tr>
+                    <td colspan="5"><b>Order Total : </b></td>
+                    <td><b>${{ object.get_total }}</b></td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <form action="{% url 'create-checkout-session' %}" method="post">
+                            <input type="hidden" name="order-id" value="{{ object.id }}">
+                            <button type="submit" class="btn btn-warning float-right ml-2">Checkout</button>
+                        </form>
+                        <a href="/" class="btn btn-primary float-right">Continue Shopping</a>
+                    </td>
+                </tr>
+                {% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    {% include 'auth_users/footer.html' %}
+</body>
+</html>

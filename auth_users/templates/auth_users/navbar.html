@@ -1,7 +1,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 <header>
-    <div class="nav">
+    <div class="nav-1">
         <nav>
             <ul class="first-nav">
                 <li><a href="{% url 'index' %}"><img id="logo" src="{% static 'media/images/engine.png' %}" alt="logo"></a></li>
@@ -11,16 +11,16 @@
             </ul>
 
             <div class="form">
-                <form action="" method="get">
-                    <input type="text" name="q" placeholder="Іздеу">
-                    <button><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
+                <form action="{% url 'search' %}" method="get">
+                    <input type="text" name="search" placeholder="Іздеу">
+                    <button type="submit"><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
                 </form>
             </div>
 
             <ul class="second-nav">
-                <li><img src="{% static 'media/images/user.png' %}" alt=""></li>
-                <li><img src="{% static 'media/images/cart.png' %}" alt=""></li>
-                <li><a href="">Log In</a></li>
+                <li><a href="{% url 'profile' user.id %}"><img src="{% static 'media/images/user.png' %}" alt=""></a></li>
+                <li><a href="{% url 'show_cart' %}"><img src="{% static 'media/images/cart.png' %}" alt=""></a></li>
+                <li><a href="{% url 'login' %}">Log In</a></li>
             </ul>
         </nav>
 

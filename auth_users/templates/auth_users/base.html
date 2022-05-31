@@ -29,9 +29,9 @@
                 </div>
 
                 <ul class="second-nav">
-                    <li><img src="{% static 'media/images/user.png' %}" alt=""></li>
-                    <li><img src="{% static 'media/images/cart.png' %}" alt=""></li>
-                    <li><a href="">Log In</a></li>
+                    <li><a href="{% url 'profile' user.id %}"><img src="{% static 'media/images/user.png' %}" alt=""></a></li>
+                    <li><a href="{% url 'show_cart' %}"><img src="{% static 'media/images/cart.png' %}" alt=""></a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
                 </ul>
             </nav>
 
@@ -60,39 +60,39 @@
         <div class="categories">
             <div class="category">
                 <ul>
-                    <li>
+                    <a href="{% url 'category' 'Запчасти' %}"><li>
                         <img src="{% static 'media/images/car-parts.png' %}" alt="">
                         <hr>
                         <p>Parts</p>
-                    </li>
+                    </li></a>
                 </ul>
                 <ul>
-                    <li>
+                    <a href="{% url 'category' 'Электроника' %}"><li>
                         <img src="{% static 'media/images/electronic.png' %}" alt="">
                         <hr>
                         <p>Electronics</p>
-                    </li>
+                    </li></a>
                 </ul>
                 <ul>
-                    <li>
+                    <a href="{% url 'category' 'Аксессуарлар' %}"><li>
                         <img src="{% static 'media/images/accessories.png' %}" alt="">
                         <hr>
                         <p>Accessories</p>
-                    </li>
+                    </li></a>
                 </ul>
                 <ul>
-                    <li>
+                    <a href="{% url 'category' 'Автохимия' %}"><li>
                         <img src="{% static 'media/images/chemistry.png' %}" alt="">
                         <hr>
                         <p>Chemistry</p>
-                    </li>
+                    </li></a>
                 </ul>
                 <ul>
-                    <li>
+                    <a href="{% url 'category' 'Антикоррозия' %}"><li>
                         <img src="{% static 'media/images/krasniy.png' %}" alt="">
                         <hr>
                         <p>Against Rust</p>
-                    </li>
+                    </li></a>
                 </ul>
             </div>
             <img id="car-engine" src="{% static 'media/images/car-engine.png' %}" alt="">

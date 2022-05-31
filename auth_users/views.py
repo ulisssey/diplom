@@ -81,13 +81,23 @@ def category(request, categories):
 @csrf_exempt
 def profile(request, pk):
     user = User.objects.get(id=pk)
+    address = Address.objects.filter(user=request.user).first()
+    context = {'user': user}
+    if address is not None:
+        context['address'] = address
     if request.method == 'POST':
         city = request.POST.get('city')
         street = request.POST.get('street')
         apartment = request.POST.get('apartment')
-        address = Address(user=request.user, city=city, street_address=street, apartment=apartment)
-        address.save()
-    return render(request, 'auth_users/profile.html', {'user': user})
+        if address is None:
+            address = Address(user=request.user, city=city, street_address=street, apartment=apartment)
+            address.save()
+        else:
+            address.city = city
+            address.street_address = street
+            address.apartment = apartment
+            address.save()
+    return render(request, 'auth_users/profile.html', context)
 
 
 @csrf_exempt
@@ -130,31 +140,29 @@ def search(request):
 def add_to_cart(request, pk):
     ordered_date = timezone.now()
     item = Item.objects.get(id=pk)
-    order_item = OrderItem(user=request.user, item=item, ordered=False)
-    order_item.save()
+    order_item = OrderItem.objects.filter(user=request.user, item=item, ordered=False).first()
+    if order_item is None:
+        order_item = OrderItem(user=request.user, item=item, ordered=False)
+        order_item.save()
+    else:
+        order_item.quantity += 1
     order = Order.objects.filter(user=request.user, ordered=False).first()
-    if order:
-        if order_item in order.items.all():
-            order_item.quantity += 1
-        else:
-            order.items.add(order_item)
+    if order is not None:
+        order.items.add(order_item)
     else:
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-    return redirect('index')
+    return redirect('show_cart')
 
 
 def show_cart(request):
     order = Order.objects.filter(user=request.user, ordered=False).first()
-    if order:
-        return render(request, 'auth_users/cart.html', {'object': order})
-    else:
-        return redirect('/')
+    return render(request, 'auth_users/cart.html', {'object': order})
 
 
 def increase_quantity(request, pk):
     item = Item.objects.get(id=pk)
-    order_item = OrderItem.objects.filter(user=request.user, item=item).first()
+    order_item = OrderItem.objects.filter(user=request.user, item=item, ordered=False).first()
     order_item.quantity += 1
     order_item.save()
     return redirect('show_cart')
@@ -162,7 +170,7 @@ def increase_quantity(request, pk):
 
 def decrease_quantity(request, pk):
     item = Item.objects.get(id=pk)
-    order_item = OrderItem.objects.filter(user=request.user, item=item).first()
+    order_item = OrderItem.objects.filter(user=request.user, item=item, ordered=False).first()
     if order_item.quantity > 0:
         order_item.quantity -= 1
         order_item.save()

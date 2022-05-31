@@ -11,7 +11,25 @@
 
     {% include 'auth_users/navbar.html' %}
 
+    <div class="profile">
+        <div class="info">
+            <p><span>Username: </span> {{ user.username }}</p>
+            <p><span>Full name: </span>{{ user.first_name }} {{ user.last_name }}</p>
+            <p><span>Email: </span>{{ user.email }}</p>
+            <p><span>Address: </span>{{ address }}</p>
+        </div>
+        <form action="" method="post">
+            <h2>If you want to add or change address</h2>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city">
+            <label for="street">Street</label>
+            <input type="text" id="street" name="street">
+            <label for="apartment">Apartment</label>
+            <input type="text" id="apartment" name="apartment">
 
+            <button type="submit">Change</button>
+        </form>
+    </div>
 
     {% include 'auth_users/footer.html' %}
 </body>

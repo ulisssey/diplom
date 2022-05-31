@@ -26,9 +26,9 @@ class Item(models.Model):
 
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    city = models.CharField(max_length=100)
-    street_address = models.CharField(max_length=100)
-    apartment = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    street_address = models.CharField(max_length=100, null=True, blank=True)
+    apartment = models.CharField(max_length=100, null=True, blank=True)
     default = models.BooleanField(default=False)
 
     def __str__(self):
