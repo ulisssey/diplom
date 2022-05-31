@@ -32,7 +32,7 @@
                   <tr>
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>
-                    <img src="{{ order_item.item.image.url }}" style="width: 130px;">
+                    <img class="order-img" src="{{ order_item.item.image.url }}">
                     </td>
                     <td>{{ order_item.item.title }}</td>
                     <td>{{ order_item.item.price }}</td>
@@ -66,7 +66,7 @@
                             <input type="hidden" name="order-id" value="{{ object.id }}">
                             <button type="submit" class="btn btn-warning float-right ml-2">Checkout</button>
                         </form>
-                        <a href="/" class="btn btn-primary float-right">Continue Shopping</a>
+                        <a id="continue" href="/" class="btn btn-primary float-right">Continue Shopping</a>
                     </td>
                 </tr>
                 {% endif %}

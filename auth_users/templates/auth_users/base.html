@@ -29,8 +29,8 @@
                 </div>
 
                 <ul class="second-nav">
-                    <li><a href="{% url 'profile' user.id %}"><img src="{% static 'media/images/user.png' %}" alt=""></a></li>
-                    <li><a href="{% url 'show_cart' %}"><img src="{% static 'media/images/cart.png' %}" alt=""></a></li>
+                    <li><a href="{% url 'profile' user.id %}"><img id="profile" src="{% static 'media/images/user.png' %}" alt=""></a></li>
+                    <li><a href="{% url 'show_cart' %}"><img id="cart" src="{% static 'media/images/cart.png' %}" alt=""></a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
                 </ul>
             </nav>

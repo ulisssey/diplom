@@ -13,6 +13,16 @@ nav {
     background: #1C2833;
 }
 
+nav.menu-btn {
+    display: block;
+}
+
+@media only screen and (max-width: 1200px) {
+    nav {
+        padding: .1em;
+    }
+}
+
 nav li {
     list-style: none;
     margin: 0em 1em;
@@ -20,6 +30,25 @@ nav li {
     color: white;
     padding: .5em;
     margin: 0 1.125em;
+}
+
+@media only screen and (max-width: 1200px) {
+    nav li {
+        font-size: 1rem;
+        padding: .4em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    nav li {
+        font-size: .7rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    nav .form {
+        display: none;
+    }
 }
 
 .form {
@@ -50,9 +79,16 @@ nav input {
     border: 0;
     outline: none;
     padding: 0em 1em;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: white;
 }
+
+@media only screen and (max-width: 1200px) {
+    nav input {
+        font-size: 1rem;
+    }
+}
+
 
 ::placeholder {
     color: #E9E5DD;
@@ -99,7 +135,7 @@ nav a:hover {
 
 .overlay {
     width: 100%;
-    height: 100vh;
+    height: 30vh;
     position: absolute;
     top: 0;
 }
@@ -107,6 +143,18 @@ nav a:hover {
 #logo {
     max-width: 50px;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) {
+    #logo {
+        max-width: 45px;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    #logo {
+        max-width: 20px;
+    }
 }
 
 .main-text {
@@ -124,8 +172,34 @@ nav a:hover {
     margin: 0;
 }
 
+@media only screen and (max-width: 1200px) {
+    .main-text h1 {
+        font-size: 4rem;
+        letter-spacing: .2em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .main-text h1 {
+        font-size: 2.2rem;
+        letter-spacing: .1em;
+    }
+}
+
 .main-text p {
     font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .main-text p {
+        font-size: 1.15rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .main-text p {
+        font-size: .7rem;
+    }
 }
 
 .main {
@@ -136,6 +210,19 @@ nav a:hover {
 
 .main h2 {
     font-size: 1.5rem;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    .main h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .main h2 {
+        font-size: 1.1rem;
+    }
 }
 
 .models {
@@ -149,11 +236,23 @@ nav a:hover {
     width: 150px;
 }
 
+@media only screen and (max-width: 810px) {
+    .car-logo {
+        width: 75px;
+    }
+}
+
 .section {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 150px;
+    margin-bottom: 200px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .section {
+        margin-bottom: 200px;
+    }
 }
 
 #category-title {
@@ -162,14 +261,42 @@ nav a:hover {
     margin: 2em;
 }
 
+@media only screen and (max-width: 1200px) {
+    #category-title {
+        font-size: 1.7rem;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    #category-title {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+}
+
 .categories {
     width: 90%;
     height: 800px;
     display: flex;
 }
 
+@media only screen and (max-width: 1200px) {
+    .categories {
+        height: 600px;
+        display: flex;
+        width: 90%;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+}
+
 .category {
     height: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -177,7 +304,13 @@ nav a:hover {
 
 .category ul {
     list-style: none;
-    width: 250px;
+    width: 30%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .category ul {
+        width: 30%;
+    }
 }
 
 .category li {
@@ -191,12 +324,38 @@ nav a:hover {
     cursor: pointer;
 }
 
+@media only screen and (max-width: 1200px) {
+    .category li {
+        height: 220px;
+        padding: .4em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .category li {
+        height: 120px;
+        padding: .2em;
+    }
+}
+
 .category li:hover {
     border-radius: 30px;
     box-shadow: 0px 0px 5px .7px grey;
     transition: .5s;
     width: 110%;
     height: 260px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .category li:hover {
+        height: 230px;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .category li:hover {
+        height: 125px;
+    }
 }
 
 .category a {
@@ -217,17 +376,42 @@ hr {
     font-size: 1.5rem;
 }
 
+@media only screen and (max-width: 1200px) {
+    .category p {
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .category p {
+        font-size: .8rem;
+    }
+}
+
 .category img {
     height: 60%;
     align-items: center;
 }
 
+@media only screen and (max-width: 1200px) {
+    .category img {
+        height: 45%;
+    }
+}
+
 #car-engine {
-    height: 50%;
+    height: 48%;
     margin-top: 20%;
     margin-left: 10%;
     animation: circle 5s linear infinite;
 }
+
+@media only screen and (max-width: 810px) {
+    #car-engine {
+        display: none;
+    }
+}
+
 @keyframes circle {
     from{
         transform: rotate(0deg)
@@ -242,14 +426,29 @@ hr {
 }
 
 .footer {
-    margin-top: 100px;
+    margin-top: 150px;
     width: 100%;
     height: 100px;
     display: flex;
     justify-content: center;
     background: #BBB5AA;
     box-shadow: 1px 0px 5px 2px grey;
+    position: absolute;
+    bottom: 5;
 }
+
+@media only screen and (max-width: 1200px) {
+    .footer {
+        height: 80px;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .footer {
+        display: none;
+    }
+}
+
 .footer img {
     margin: 1em 1em;
     width: 32px;
@@ -259,10 +458,25 @@ hr {
 
 .category-list {
     margin-top: -23em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    .category-list {
+        margin-top: -19em;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .category-list {
+        margin-top: -10em;
+    }
 }
 
 .category-items {
@@ -274,14 +488,24 @@ hr {
 
 .category-items ul {
     list-style: none;
-    width: 90%;
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
 }
 
+.category-items a {
+    width: 20%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .category-items a {
+        width: 30%;
+    }
+}
+
 .category-items li {
-    width: 200px;
-    height: 310px;
+    height: 280px;
     padding: .7em;
     display: flex;
     flex-direction: column;
@@ -291,21 +515,61 @@ hr {
     margin: 0 1em;
 }
 
+@media only screen and (max-width: 1200px) {
+    .category-items li {
+        height: 270px;
+        padding: .5em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .category-items li {
+        height: 100px;
+        padding: .5em;
+    }
+}
+
 .category-items li p {
     text-align: center;
-    font-size: .9rem;
+    font-size: 1rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .category-items li p {
+        font-size: .9rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .category-items li p {
+        font-size: .7rem;
+    }
 }
 
 .category-items li:hover {
     border-radius: 30px;
     box-shadow: 0px 0px 5px .7px grey;
     transition: .5s;
-    width: 210px;
-    height: 315px;
+    width: 205px;
+    height: 275px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .category-items li:hover {
+        height: 270px;
+        width: 185px;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .category-items li:hover {
+        height: 105px;
+        width: 32%;
+    }
 }
 
 .category-items img {
-    height: 50%;
+    height: 48% !important;
     align-items: center;
 }
 
@@ -328,6 +592,12 @@ hr {
     margin-top: .5em;
     font-size: .9rem;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) {
+    .buttons button {
+        font-size: .8rem;
+    }
 }
 
 #watchlist-btn {
@@ -358,6 +628,22 @@ hr {
     justify-content: center;
 }
 
+@media only screen and (max-width: 1200px) {
+    .register-form {
+        height: 450px;
+        margin-top: -17em;
+        padding: 1.8em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .register-form {
+        height: 450px;
+        margin-top: -7em;
+        padding: 1.2em;
+    }
+}
+
 .register-form form {
     display: flex;
     flex-direction: column;
@@ -368,8 +654,26 @@ hr {
     margin: auto;
 }
 
+@media only screen and (max-width: 1200px) {
+    .register-form form {
+        padding: 2.7em;
+    }
+}
+
 .register-form form label {
     font-size: 1.4rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .register-form form label {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .register-form form label {
+        font-size: .9rem;
+    }
 }
 
 .register-form input {
@@ -383,6 +687,23 @@ hr {
     font-size: 1.2rem;
 }
 
+@media only screen and (max-width: 1200px) {
+    .register-form input {
+        margin: .4em;
+        padding: .18em;
+        font-size: 1.18rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .register-form input {
+        margin: .2em;
+        padding: .1em;
+        font-size: 1rem;
+        height: 15px;
+    }
+}
+
 .register-form button {
     width: 20%;
     margin-top: .5em;
@@ -394,12 +715,32 @@ hr {
     cursor: pointer;
 }
 
+@media only screen and (max-width: 1200px) {
+    .register-form button {
+        width: 30%;
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .register-form button {
+        width: 55%;
+        font-size: .8rem;
+    }
+}
+
 .register-form button:hover {
     background: #A2D9CE;
 }
 
 .register-form a{
     margin-top: .5em;
+}
+
+@media only screen and (max-width: 1200px) {
+    .register-form a {
+        font-size: .7rem;
+    }
 }
 
 .profile {
@@ -412,6 +753,20 @@ hr {
     display: flex;
 }
 
+@media only screen and (max-width: 1200px) {
+    .profile {
+        margin-top: -10em;
+        padding: .4em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .profile {
+        margin-top: -3em;
+        padding: .4em;
+    }
+}
+
 .info {
     width: 50%;
     display: flex;
@@ -419,6 +774,20 @@ hr {
     padding: .7em;
     font-size: 1.2rem;
     letter-spacing: .09rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .info {
+        padding: .6em;
+        font-size: 1.1em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .info {
+        padding: .6em;
+        font-size: .9em;
+    }
 }
 
 .info span {
@@ -436,12 +805,50 @@ hr {
     border-left: 2px solid grey;
 }
 
+@media only screen and (max-width: 1200px) {
+    .profile form {
+        padding: .6em;
+        font-size: 1.1rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .profile form {
+        padding: .6em;
+        font-size: .9rem;
+    }
+}
+
 .profile h2 {
     font-size: 1.2rem;
 }
 
+@media only screen and (max-width: 1200px) {
+    .profile h2 {
+        font-size: 1.15rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .profile h2 {
+        font-size: .9rem;
+    }
+}
+
 .profile form label {
     font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .profile form label {
+        font-size: 1.1rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .profile form label {
+        font-size: .9rem;
+    }
 }
 
 .profile input {
@@ -455,6 +862,22 @@ hr {
     font-size: 1.2rem;
 }
 
+@media only screen and (max-width: 1200px) {
+    .profile input {
+        margin: .6em;
+        font-size: 1.1rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .profile input {
+        margin: .6em;
+        font-size: .9rem;
+        height: 20px;
+    }
+}
+
+
 .profile button {
     width: 20%;
     margin-top: .5em;
@@ -467,12 +890,110 @@ hr {
     cursor: pointer;
 }
 
+@media only screen and (max-width: 1200px) {
+    .profile button {
+        margin: .6em;
+        font-size: .9rem;
+        width: 50%;
+    }
+}
+
+
 .profile button:hover {
     background: #A2D9CE;
 }
 
 .container {
-    border: 1px solid magenta;
     height: 500px;
     margin-top: -15em;
 }
+
+#continue {
+    margin-top: .5em;
+}
+
+.only li {
+    justify-content: center;
+    height: 220px;
+}
+
+@media only screen and (max-width: 810px) {
+    .only li {
+        justify-content: center;
+        height: 100px;
+    }
+}
+
+.only li:hover {
+    height: 225px;
+}
+
+@media only screen and (max-width: 810px) {
+    .only li:hover {
+        height: 105px;
+        width: 50%;
+    }
+}
+
+.second li {
+    width: 20%;
+}
+
+@media only screen and (max-width: 810px) {
+    .second li {
+        height: 200px;
+        width: 25%;
+    }
+
+    .second ul li img {
+        height: 30% !important;
+    }
+
+    .second button {
+        font-size: .7rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .second li:hover {
+        height: 205px;
+        width: 27% !important;
+    }
+
+    .second ul li img {
+        height: 30% !important;
+    }
+
+    .second button {
+        font-size: .7rem;
+    }
+}
+
+.second li:hover {
+    width: 20%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .container {
+        margin-top: -11em;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    #profile, #cart, .plus-minus {
+        height: 20px;
+    }
+
+    .container {
+        margin-top: -5em;
+    }
+
+    .table {
+        font-size: .8rem;
+    }
+
+    .order-img {
+        width: 140%;
+    }
+}
+

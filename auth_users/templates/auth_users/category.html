@@ -13,18 +13,17 @@
 
     <div class="category-list">
         <p id="category-title">Categories</p>
-        <div class="category-items">
+        <div class="category-items second">
             <ul>
                 {% for item in items %}
                 <li>
                     <img src="{{ item.image.url }}" alt="">
-                    <hr>
                     <p>{{ item.title }}</p>
                     <div class="buttons">
-                        <form action="">
+                        <form action="{% url 'add-watchlist' item.id %}">
                             <button id="watchlist-btn" type="submit">Add to watchlist</button>
                         </form>
-                        <form action="">
+                        <form action="{% url 'add-cart' item.id %}">
                             <button id="cart-btn" type="submit" >Add to cart</button>
                         </form>
                     </div>

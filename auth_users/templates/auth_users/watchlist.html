@@ -12,19 +12,18 @@
     {% include 'auth_users/navbar.html' %}
 
     <div class="category-list">
-        <p id="category-title">Categories</p>
-        <div class="category-items">
+        <p id="category-title">Watchlist</p>
+        <div class="category-items second">
             <ul>
                 {% for item in items %}
                 <li>
                     <img src="{{ item.image.url }}" alt="">
-                    <hr>
                     <p>{{ item.title }}</p>
                     <div class="buttons">
-                        <form action="">
+                        <form action="{% url 'del-watchlist' item.id %}">
                             <button id="watchlist-btn" type="submit">Remove item</button>
                         </form>
-                        <form action="">
+                        <form action="{% url 'add-cart' item.id %}">
                             <button id="cart-btn" type="submit" >Add to cart</button>
                         </form>
                     </div>
