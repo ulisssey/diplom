@@ -1,20 +1,28 @@
-{% extends 'auth_users/layout.html' %}
-{% block title %}Log In{% endblock %}
-{% block content %}
-    <section>
-        <div class="container-2">
-          <form method="post" action="{% url 'login' %}">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
 
-                <label for="exampleInputEmail1" class="form-label">Логин</label>
-                <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    {% include 'auth_users/navbar.html' %}
 
-                <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+    <div class="register-form">
+        <form action="{% url 'login' %}" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
 
-                <button id='btn-1' type="submit" class="btn btn-secondary">Кіру</button>
+            <button type="submit" >Login</button>
+            <a href="{% url 'register' %}">Does not have an account? Register</a>
+        </form>
+    </div>
 
-                <a href="{% url 'register' %}">Жаңа аккаунт құру</a>
-            </form>
-        </div>
-    </section>
-{% endblock %}
+    {% include 'auth_users/footer.html' %}
+</body>
+</html>

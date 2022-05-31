@@ -1,36 +1,39 @@
-{% extends 'auth_users/layout.html' %}
-{% block title %}Бас Парақша{% endblock %}
-{% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-1">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
 
-            </div>
-            <div class="col">
-                <div class="container-all-item">
-                    {% for item in items %}
-                        <div class="container-item">
-                            <div class="container-1">
-                                <img class="img-1" src="{{ item.image.url }}">
-                            </div>
-                            <div class="container-2">
-                                <h4>{{ item.title }}</h4>
-                                <p>Бағасы: {{ item.price }} тенге</p>
-                                <p>{{ item }}...</p>
-                                <hr>
-                                <form method="post" action="{% url 'watchlist' item.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-outline-info">Таңдауларға қосу</button>
-                                </form>
-                                <form id='form-1' method="post" action="{% url 'cart' item.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-outline-info">Себетке қосу</button>
-                                </form>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
+    {% include 'auth_users/navbar.html' %}
+
+    <div class="category-list">
+        <p id="category-title">Search results</p>
+        <div class="category-items">
+            <ul>
+                {% for item in items %}
+                <li>
+                    <img src="{{ item.image.url }}" alt="">
+                    <hr>
+                    <p>{{ item.title }}</p>
+                    <div class="buttons">
+                        <form action="">
+                            <button id="watchlist-btn" type="submit">Add to watchlist</button>
+                        </form>
+                        <form action="">
+                            <button id="cart-btn" type="submit" >Add to cart</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
-{% endblock %}
+
+    {% include 'auth_users/footer.html' %}
+</body>
+</html>

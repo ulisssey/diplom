@@ -8,36 +8,8 @@
     <title>Title</title>
 </head>
 <body>
-    <header>
-        <div class="nav">
-            <nav>
-                <ul class="first-nav">
-                    <li><a href="{% url 'index' %}"><img id="logo" src="{% static 'media/images/engine.png' %}" alt="logo"></a></li>
-                    <li><a href="{% url 'index' %}">Home Page</a></li>
-                    <li><a href="{% url 'show_categories' %}">Categories</a></li>
-                    <li><a href="{% url 'show_watchlist' %}">Watchlist</a></li>
-                </ul>
 
-                <div class="form">
-                    <form action="" method="get">
-                        <input type="text" name="q" placeholder="Іздеу">
-                        <button><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
-                    </form>
-                </div>
-
-                <ul class="second-nav">
-                    <li><img src="{% static 'media/images/user.png' %}" alt=""></li>
-                    <li><img src="{% static 'media/images/cart.png' %}" alt=""></li>
-                    <li><a href="">Log In</a></li>
-                </ul>
-            </nav>
-
-            <div class="main-text">
-                <h1>Lorem ipsum</h1>
-                <p>dolor sit amet, consectetur adipiscing elit</p>
-            </div>
-        </div>
-    </header>
+    {% include 'auth_users/navbar.html' %}
 
     <div class="category-list">
         <p id="category-title">Categories</p>
@@ -62,11 +34,6 @@
         </div>
     </div>
 
-    <div class="footer">
-        <img src="{% static 'media/images/vk.png' %}" alt="">
-        <img src="{% static 'media/images/instagram.png' %}" alt="">
-        <img src="{% static 'media/images/facebook.png' %}" alt="">
-        <img src="{% static 'media/images/twitter.png' %}" alt="">
-    </div>
+    {% include 'auth_users/footer.html' %}
 </body>
 </html>

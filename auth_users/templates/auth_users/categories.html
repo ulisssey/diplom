@@ -76,11 +76,6 @@
         </div>
     </div>
 
-    <div class="footer">
-        <img src="{% static 'media/images/vk.png' %}" alt="">
-        <img src="{% static 'media/images/instagram.png' %}" alt="">
-        <img src="{% static 'media/images/facebook.png' %}" alt="">
-        <img src="{% static 'media/images/twitter.png' %}" alt="">
-    </div>
+    {% include 'auth_users/footer.html' %}
 </body>
 </html>

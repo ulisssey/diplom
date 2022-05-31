@@ -22,9 +22,9 @@
                 </ul>
 
                 <div class="form">
-                    <form action="" method="get">
-                        <input type="text" name="q" placeholder="Іздеу">
-                        <button><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
+                    <form action="{% url 'search' %}" method="get">
+                        <input type="text" name="search" placeholder="Іздеу">
+                        <button type="submit" ><img id="search" src="{% static 'media/images/search.png' %}" alt=""></button>
                     </form>
                 </div>
 
@@ -99,11 +99,6 @@
         </div>
     </div>
 
-    <div class="footer">
-        <img src="{% static 'media/images/vk.png' %}" alt="">
-        <img src="{% static 'media/images/instagram.png' %}" alt="">
-        <img src="{% static 'media/images/facebook.png' %}" alt="">
-        <img src="{% static 'media/images/twitter.png' %}" alt="">
-    </div>
+    {% include 'auth_users/footer.html' %}
 </body>
 </html>

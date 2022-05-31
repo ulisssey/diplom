@@ -1,29 +1,36 @@
-{% extends 'auth_users/layout.html' %}
-{% block title %}Register{% endblock %}
-{% block content %}
-    <section>
-        <div class="container-3">
-            <form action="{% url 'register' %}" method="post">
-                <label for="firstname">Атыңыз</label>
-                <input name="firstname" type="text" id="firstname" placeholder="Атыңызды енгізіңіз">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
 
-                <label for="lastname">Жөніңіз</label>
-                <input name="lastname" type="text" id="lastname" placeholder="Жөніңізді енгізіңіз">
+    {% include 'auth_users/navbar.html' %}
 
-                <label for="username">Логин</label>
-                <input name="username" type="text" id="username" placeholder="Жаңа логинді енгізіңіз">
+    <div class="register-form">
+        <form action="{% url 'register' %}" method="post">
+            <label for="firstname">Name</label>
+            <input type="text" id="firstname" name="firstname">
+            <label for="lastname">Lastname</label>
+            <input type="text" id="lastname" name="lastname">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+            <label for="email">email</label>
+            <input type="email" id="email" name="email">
+            <label for="password1">Password1</label>
+            <input type="password" id="password1" name="password1">
+            <label for="password2">Password2</label>
+            <input type="password" id="password2" name="password2">
 
-                <label for="email">Email</label>
-                <input name="email" type="email" id="email" placeholder="Поштаңызды енгізіңіз">
+            <button type="submit" >Create</button>
+            <a href="{% url 'login' %}">Already have an account? Log In</a>
+        </form>
+    </div>
 
-                <label for="password1">Парольді енгізіңіз</label>
-                <input name="password1" type="password" id="password1" placeholder="Парольді енгізіңіз">
-
-                <label for="password2">Парольді растаңыз</label>
-                <input name="password2" type="password" id="password2" placeholder="Парольді енгізіңіз">
-
-                <button type="submit">Құру</button>
-            </form>
-        </div>
-    </section>
-{% endblock %}
+    {% include 'auth_users/footer.html' %}
+</body>
+</html>
