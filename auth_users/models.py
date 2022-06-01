@@ -15,6 +15,7 @@ class Item(models.Model):
     image = models.ImageField(upload_to='images/')
     price = models.IntegerField()
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, default='Nothing')
+    car_model = models.CharField(max_length=100, default='uni')
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

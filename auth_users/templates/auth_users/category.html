@@ -12,13 +12,13 @@
     {% include 'auth_users/navbar.html' %}
 
     <div class="category-list">
-        <p id="category-title">Categories</p>
+        <p id="category-title">{{ category }}</p>
         <div class="category-items second">
             <ul>
                 {% for item in items %}
                 <li>
                     <img src="{{ item.image.url }}" alt="">
-                    <p>{{ item.title }}</p>
+                    <p><a href="{% url 'item-page' item.id %}">{{ item.title }}</a></p>
                     <div class="buttons">
                         <form action="{% url 'add-watchlist' item.id %}">
                             <button id="watchlist-btn" type="submit">Add to watchlist</button>
@@ -31,6 +31,16 @@
                 {% endfor %}
             </ul>
         </div>
+    </div>
+
+    <div class="page-numeration">
+        {% if items.has_previous %}
+            <a href="?page=1">1</a>
+            <a href="?page={{ items.previous_page_number }}">Артқа</a>
+        {% endif %}
+        {% if items.has_next %}
+            <a href="?page= {{ items.next_page_number }}">Келесі</a>
+        {% endif %}
     </div>
 
     {% include 'auth_users/footer.html' %}

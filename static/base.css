@@ -590,13 +590,19 @@ hr {
     border: 1px dotted grey;
     padding: .5em;
     margin-top: .5em;
-    font-size: .9rem;
+    font-size: .8rem;
     cursor: pointer;
 }
 
 @media only screen and (max-width: 1200px) {
     .buttons button {
         font-size: .8rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .buttons button {
+        font-size: .7rem;
     }
 }
 
@@ -993,7 +999,146 @@ hr {
     }
 
     .order-img {
-        width: 140%;
+        max-width: 100px;
     }
 }
 
+.item-container {
+    margin-top: -22em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+@media only screen and (max-width: 1200px) {
+   .item-container {
+        margin-top: -14em;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+   .item-container {
+        margin-top: -7em;
+        height: 500px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.item-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 810px) {
+   .item-image {
+        width: 100%;
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: top;
+    }
+}
+
+.item-image img {
+    height: 80%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .item-image img {
+        height: 60%;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .item-image img {
+        height: 100%;
+    }
+}
+
+.item-contains {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+@media only screen and (max-width: 810px) {
+    .item-contains {
+        width: 100%;
+        margin auto;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.item-text h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2em;
+}
+
+@media only screen and (max-width: 1200px) {
+    .item-text h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .item-text h2 {
+        font-size: 1rem;
+    }
+    .item-text {
+        width: 100%;
+    }
+}
+
+.item-text p {
+    font-size: 1.5rem;
+    letter-spacing: .1em;
+}
+
+@media only screen and (max-width: 1200px) {
+    .item-text p {
+        font-size: 1.3rem;
+        letter-spacing: .08
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .item-text p {
+        font-size: .7rem;
+        letter-spacing: .08
+    }
+}
+
+.item-btn {
+    margin-bottom: 1em;
+}
+
+@media only screen and (max-width: 1200px) {
+    .buttons button {
+        font-size: .8rem !important;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .buttons button {
+        font-size: .8rem !important;
+    }
+}
+
+.page-numeration {
+    margin: 2em;
+    text-align: center;
+}

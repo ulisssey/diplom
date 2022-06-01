@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+
+    {% include 'auth_users/navbar.html' %}
+
+    <div class="item-container">
+        <div class="item-image"><img src="{{ item.image.url }}" alt=""></div>
+
+        <div class="item-contains">
+            <div class="item-text">
+                <h2>{{ item.title }}</h2>
+                <p>Описание: {{ item.description }}</p>
+                <p>Категория: {{ item.category }}</p>
+                <p>Совместимость с моделями: {{ item.car_model }}</p>
+            </div>
+            <div class="buttons item-btn">
+                <form action="{% url 'add-watchlist' item.id %}">
+                    <button id="watchlist-btn" type="submit">Add to watchlist</button>
+                </form>
+                <form action="{% url 'add-cart' item.id %}">
+                    <button id="cart-btn" type="submit" >Add to cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include 'auth_users/footer.html' %}
+</body>
+</html>

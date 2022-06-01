@@ -33,6 +33,16 @@
         </div>
     </div>
 
+    <div class="page-numeration">
+        {% if items.has_previous %}
+            <a href="?page=1">1</a>
+            <a href="?page={{ items.previous_page_number }}">Артқа</a>
+        {% endif %}
+        {% if items.has_next %}
+            <a href="?page= {{ items.next_page_number }}">Келесі</a>
+        {% endif %}
+    </div>
+
     {% include 'auth_users/footer.html' %}
 </body>
 </html>

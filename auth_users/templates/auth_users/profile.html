@@ -17,6 +17,7 @@
             <p><span>Full name: </span>{{ user.first_name }} {{ user.last_name }}</p>
             <p><span>Email: </span>{{ user.email }}</p>
             <p><span>Address: </span>{{ address }}</p>
+            <a href="{% url 'edit-profile' %}">Edit</a>
         </div>
         <form action="" method="post">
             <h2>If you want to add or change address</h2>

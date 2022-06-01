@@ -15,8 +15,10 @@ urlpatterns = [
 
     path('categories/', views.categories, name='show_categories'),
     path('categories/<str:categories>/', views.category, name='category'),
+    path('item-page/<str:pk>', views.itempage, name='item-page'),
 
     path('profile/<str:pk>', views.profile, name='profile'),
+    path('edit-profile', views.changeprofile, name='edit-profile'),
     path('slider', views.slider),
 
     path('add-watchlist/<str:pk>', views.get_watch_list, name='add-watchlist'),

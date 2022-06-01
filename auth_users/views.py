@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 from .models import Item, Categories, Watchlist, OrderItem, Order, Address
 
@@ -70,14 +71,20 @@ def categories(request):
 
 def category(request, categories):
     items = Item.objects.all().filter(category__categories=categories)
-    p = Paginator(items, 6)
+    p = Paginator(items, 4)
     page_num = request.GET.get('page', '1')
     page = p.page(page_num)
     nums = [x for x in range(1, p.num_pages + 1)]
-    category = items[0].category
-    return render(request, 'auth_users/category.html', {'items': page, 'nums': nums, 'category': category})
+    title = items[0].category
+    return render(request, 'auth_users/category.html', {'items': page, 'nums': nums, 'category': title})
 
 
+def itempage(request, pk):
+    item = Item.objects.filter(id=pk).first()
+    return render(request, 'auth_users/item-page.html', {'item': item})
+
+
+@login_required(login_url='login')
 @csrf_exempt
 def profile(request, pk):
     user = User.objects.get(id=pk)
@@ -100,6 +107,26 @@ def profile(request, pk):
     return render(request, 'auth_users/profile.html', context)
 
 
+@login_required(login_url='login')
+@csrf_exempt
+def changeprofile(request):
+    if request.method == 'POST':
+        firstname = request.POST.get('firstname')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        user = User.objects.filter(id=request.user.id).first()
+        if len(firstname) != 0:
+            user.first_name = firstname
+        if len(lastname) != 0:
+            user.last_name = lastname
+        if len(email) != 0:
+            user.email = email
+        user.save()
+        return redirect('profile', user.id)
+    return render(request, 'auth_users/edit-profile.html')
+
+
+@login_required(login_url='login')
 @csrf_exempt
 def get_watch_list(request, pk):
     wl = Watchlist.objects.all().filter(author_id=request.user.id, watchlist=pk)
@@ -113,12 +140,14 @@ def get_watch_list(request, pk):
         return redirect('index')
 
 
+@login_required(login_url='login')
 @csrf_exempt
 def del_watch_list(request, pk):
     Watchlist.objects.all().filter(author_id=request.user.id, watchlist=pk).delete()
     return redirect('show_watchlist')
 
 
+@login_required(login_url='login')
 def show_watchlist(request):
     items = []
     for wl in Watchlist.objects.all().filter(author_id=request.user.id):
@@ -137,6 +166,7 @@ def search(request):
         return render(request, 'auth_users/search.html', {'items': items})
 
 
+@login_required(login_url='login')
 def add_to_cart(request, pk):
     ordered_date = timezone.now()
     item = Item.objects.get(id=pk)
@@ -155,6 +185,7 @@ def add_to_cart(request, pk):
     return redirect('show_cart')
 
 
+@login_required(login_url='login')
 def show_cart(request):
     order = Order.objects.filter(user=request.user, ordered=False).first()
     return render(request, 'auth_users/cart.html', {'object': order})

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+
+    {% include 'auth_users/navbar.html' %}
+
+    <div class="register-form">
+        <form action="{% url 'edit-profile' %}" method="post">
+            <label for="firstname">Name</label>
+            <input type="text" id="firstname" name="firstname">
+            <label for="lastname">Lastname</label>
+            <input type="text" id="lastname" name="lastname">
+            <label for="email">email</label>
+            <input type="email" id="email" name="email">
+
+            <button type="submit" >Edit</button>
+        </form>
+    </div>
+
+    {% include 'auth_users/footer.html' %}
+</body>
+</html>
