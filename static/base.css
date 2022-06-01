@@ -979,6 +979,15 @@ hr {
     width: 20%;
 }
 
+.order-img {
+    max-width: 200px;
+}
+
+.orderimg {
+    display: flex;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 1200px) {
     .container {
         margin-top: -11em;

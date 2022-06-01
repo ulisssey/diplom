@@ -31,7 +31,7 @@
                   {% for order_item in object.items.all %}
                   <tr>
                     <th scope="row">{{ forloop.counter }}</th>
-                    <td>
+                    <td class="orderimg">
                     <img class="order-img" src="{{ order_item.item.image.url }}">
                     </td>
                     <td>{{ order_item.item.title }}</td>
@@ -42,7 +42,7 @@
                         <a href="{% url 'increase-q' order_item.item.id %}"><img class="plus-minus" src="{% static 'media/images/plus.png' %}" alt="plus"></a>
                     </td>
                     <td>
-                          ${{ order_item.get_total_price }}
+                          {{ order_item.get_total_price }} тг
                       <a style="color: red" href="/">
                         <i class="fas fa-trash float-right"></i>
                       </a>
@@ -58,7 +58,7 @@
                 {% if object.get_total %}
                 <tr>
                     <td colspan="5"><b>Order Total : </b></td>
-                    <td><b>${{ object.get_total }}</b></td>
+                    <td><b>{{ object.get_total }} тг</b></td>
                 </tr>
                 <tr>
                     <td colspan="5">
