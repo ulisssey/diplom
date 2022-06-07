@@ -37,9 +37,7 @@
                     <td>{{ order_item.item.title }}</td>
                     <td>{{ order_item.item.price }}</td>
                     <td>
-                        <a href="{% url 'decrease-q' order_item.item.id %}"><img class="plus-minus" src="{% static 'media/images/minus.png' %}" alt="minus"></a>
                         {{ order_item.quantity }}
-                        <a href="{% url 'increase-q' order_item.item.id %}"><img class="plus-minus" src="{% static 'media/images/plus.png' %}" alt="plus"></a>
                     </td>
                     <td>
                           {{ order_item.get_total_price }} тг
@@ -47,7 +45,6 @@
                         <i class="fas fa-trash float-right"></i>
                       </a>
                     </td>
-                      <td><a href="{% url 'delete-item' order_item.item.id %}">Жою</a></td>
                   </tr>
                   {% empty %}
                   <tr>
@@ -59,15 +56,6 @@
                 <tr>
                     <td colspan="5"><b>Тапсырыстың жалпы бағасы: </b></td>
                     <td><b>{{ object.get_total }} тг</b></td>
-                </tr>
-                <tr>
-                    <td colspan="5">
-                        <form action="{% url 'create-checkout-session' %}" method="post">
-                            <input type="hidden" name="order-id" value="{{ object.id }}">
-                            <button type="submit" class="btn btn-warning float-right ml-2">Төлемге өту</button>
-                        </form>
-                        <a id="continue" href="/" class="btn btn-primary float-right">Сатып алуды жалғастыру</a>
-                    </td>
                 </tr>
                 {% endif %}
               </table>

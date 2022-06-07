@@ -20,6 +20,7 @@ urlpatterns = [
     path('profile/<str:pk>', views.profile, name='profile'),
     path('edit-profile', views.changeprofile, name='edit-profile'),
     path('slider', views.slider),
+    path('order/<str:pk>', views.order, name='order'),
 
     path('add-watchlist/<str:pk>', views.get_watch_list, name='add-watchlist'),
     path('delete-watchlist/<str:pk>', views.del_watch_list, name='del-watchlist'),

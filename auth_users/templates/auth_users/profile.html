@@ -13,23 +13,32 @@
 
     <div class="profile">
         <div class="info">
-            <p><span>Username: </span> {{ user.username }}</p>
-            <p><span>Full name: </span>{{ user.first_name }} {{ user.last_name }}</p>
-            <p><span>Email: </span>{{ user.email }}</p>
-            <p><span>Address: </span>{{ address }}</p>
-            <a href="{% url 'edit-profile' %}">Edit</a>
+            <p><span>Логин: </span> {{ user.username }}</p>
+            <p><span>Аты-жөн: </span>{{ user.first_name }} {{ user.last_name }}</p>
+            <p><span>Пошта: </span>{{ user.email }}</p>
+            <p><span>Адрес: </span>{{ address }}</p>
+            <a href="{% url 'edit-profile' %}">Өзгерту</a>
         </div>
         <form action="" method="post">
-            <h2>If you want to add or change address</h2>
-            <label for="city">City</label>
+            <h2>Егер де адресті өзгерткіңіз келсе немесе адрес енгізу</h2>
+            <label for="city">Қала</label>
             <input type="text" id="city" name="city">
-            <label for="street">Street</label>
+            <label for="street">Көше</label>
             <input type="text" id="street" name="street">
-            <label for="apartment">Apartment</label>
+            <label for="apartment">Пәтер</label>
             <input type="text" id="apartment" name="apartment">
 
-            <button type="submit">Change</button>
+            <button type="submit">Сақтау</button>
         </form>
+    </div>
+
+    <div class="orders">
+        <ul>
+            <p>Менің тапсырыстарым:</p>
+            {% for order in orders %}
+                <li><a href="{% url 'order' order.id %}">Тапсырыс №{{ order.id }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
 
     {% include 'auth_users/footer.html' %}

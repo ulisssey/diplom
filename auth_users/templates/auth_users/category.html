@@ -21,10 +21,10 @@
                     <p><a href="{% url 'item-page' item.id %}">{{ item.title }}</a></p>
                     <div class="buttons">
                         <form action="{% url 'add-watchlist' item.id %}">
-                            <button id="watchlist-btn" type="submit">Add to watchlist</button>
+                            <button id="watchlist-btn" type="submit">Таңдауға қосу</button>
                         </form>
                         <form action="{% url 'add-cart' item.id %}">
-                            <button id="cart-btn" type="submit" >Add to cart</button>
+                            <button id="cart-btn" type="submit" >Себетке қосу</button>
                         </form>
                     </div>
                 </li>

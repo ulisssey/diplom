@@ -12,7 +12,7 @@
     {% include 'auth_users/navbar.html' %}
 
     <div class="category-list">
-        <p id="category-title">Watchlist</p>
+        <p id="category-title">Таңдаулар</p>
         <div class="category-items second">
             <ul>
                 {% for item in items %}
@@ -21,10 +21,10 @@
                     <p>{{ item.title }}</p>
                     <div class="buttons">
                         <form action="{% url 'del-watchlist' item.id %}">
-                            <button id="watchlist-btn" type="submit">Remove item</button>
+                            <button id="watchlist-btn" type="submit">Таңдаудан жою</button>
                         </form>
                         <form action="{% url 'add-cart' item.id %}">
-                            <button id="cart-btn" type="submit" >Add to cart</button>
+                            <button id="cart-btn" type="submit" >Себетке қосу</button>
                         </form>
                     </div>
                 </li>

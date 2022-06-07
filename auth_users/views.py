@@ -89,7 +89,8 @@ def itempage(request, pk):
 def profile(request, pk):
     user = User.objects.get(id=pk)
     address = Address.objects.filter(user=request.user).first()
-    context = {'user': user}
+    orders = Order.objects.filter(user=request.user, ordered=True)
+    context = {'user': user, 'orders': orders}
     if address is not None:
         context['address'] = address
     if request.method == 'POST':
@@ -105,6 +106,11 @@ def profile(request, pk):
             address.apartment = apartment
             address.save()
     return render(request, 'auth_users/profile.html', context)
+
+
+def order(request, pk):
+    order_page = Order.objects.filter(user=request.user, id=pk).first()
+    return render(request, 'auth_users/order_page.html', {'object': order_page})
 
 
 @login_required(login_url='login')

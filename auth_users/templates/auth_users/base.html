@@ -16,9 +16,9 @@
             <nav>
                 <ul class="first-nav">
                     <li><a href="{% url 'index' %}"><img id="logo" src="{% static 'media/images/engine.png' %}" alt="logo"></a></li>
-                    <li><a href="{% url 'index' %}">Home Page</a></li>
-                    <li><a href="{% url 'show_categories' %}">Categories</a></li>
-                    <li><a href="{% url 'show_watchlist' %}">Watchlist</a></li>
+                    <li><a href="{% url 'index' %}">Бас парақша</a></li>
+                    <li><a href="{% url 'show_categories' %}">Категориялар</a></li>
+                    <li><a href="{% url 'show_watchlist' %}">Таңдаулар</a></li>
                 </ul>
 
                 <div class="form">
@@ -32,23 +32,23 @@
                     <li><a href="{% url 'profile' user.id %}"><img id="profile" src="{% static 'media/images/user.png' %}" alt=""></a></li>
                     <li><a href="{% url 'show_cart' %}"><img id="cart" src="{% static 'media/images/cart.png' %}" alt=""></a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}">Log Out</a></li>
+                        <li><a href="{% url 'logout' %}">Шығу</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}">Log In</a></li>
+                        <li><a href="{% url 'login' %}">Кіру</a></li>
                     {% endif %}
                 </ul>
             </nav>
 
             <div class="main-text">
-                <h1>Lorem ipsum</h1>
-                <p>dolor sit amet, consectetur adipiscing elit</p>
+                <h1>Автокөлік тауарлары</h1>
+                <p>төмен бағалар, үлкен жеңілдіктер!</p>
             </div>
         </div>
     </header>
 
     <section>
         <div class="main">
-            <h2>You can find details and accessories for this models</h2>
+            <h2>Сіз төмендегідей модельдерге автобөлшектер мен аксессуарлар таба аласыз!</h2>
             <div class="models">
                 <img class="car-logo" src="{% static 'media/images/mazda.png' %}" alt="">
                 <img class="car-logo" src="{% static 'media/images/audi.png' %}" alt="">
@@ -60,42 +60,42 @@
     </section>
 
     <div class="section">
-        <p id="category-title">Categories</p>
+        <p id="category-title">Категориялар</p>
         <div class="categories">
             <div class="category">
                 <ul>
                     <a href="{% url 'category' 'Запчасти' %}"><li>
                         <img src="{% static 'media/images/car-parts.png' %}" alt="">
                         <hr>
-                        <p>Parts</p>
+                        <p>Автобөлшектер</p>
                     </li></a>
                 </ul>
                 <ul>
                     <a href="{% url 'category' 'Электроника' %}"><li>
                         <img src="{% static 'media/images/electronic.png' %}" alt="">
                         <hr>
-                        <p>Electronics</p>
+                        <p>Электроника</p>
                     </li></a>
                 </ul>
                 <ul>
                     <a href="{% url 'category' 'Аксессуарлар' %}"><li>
                         <img src="{% static 'media/images/accessories.png' %}" alt="">
                         <hr>
-                        <p>Accessories</p>
+                        <p>Аксессуарлар</p>
                     </li></a>
                 </ul>
                 <ul>
                     <a href="{% url 'category' 'Автохимия' %}"><li>
                         <img src="{% static 'media/images/chemistry.png' %}" alt="">
                         <hr>
-                        <p>Chemistry</p>
+                        <p>Автохимия</p>
                     </li></a>
                 </ul>
                 <ul>
                     <a href="{% url 'category' 'Антикоррозия' %}"><li>
                         <img src="{% static 'media/images/krasniy.png' %}" alt="">
                         <hr>
-                        <p>Against Rust</p>
+                        <p>Коррозияға қарсы</p>
                     </li></a>
                 </ul>
             </div>
