@@ -13,21 +13,21 @@
 
     <div class="register-form">
         <form action="{% url 'register' %}" method="post">
-            <label for="firstname">Name</label>
+            <label for="firstname">Атыңыз</label>
             <input type="text" id="firstname" name="firstname">
-            <label for="lastname">Lastname</label>
+            <label for="lastname">Жөңіңіз</label>
             <input type="text" id="lastname" name="lastname">
-            <label for="username">Username</label>
+            <label for="username">Логин</label>
             <input type="text" id="username" name="username">
-            <label for="email">email</label>
+            <label for="email">Пошта</label>
             <input type="email" id="email" name="email">
-            <label for="password1">Password1</label>
+            <label for="password1">Пароль</label>
             <input type="password" id="password1" name="password1">
-            <label for="password2">Password2</label>
+            <label for="password2">Парольді растау</label>
             <input type="password" id="password2" name="password2">
 
-            <button type="submit" >Create</button>
-            <a href="{% url 'login' %}">Already have an account? Log In</a>
+            <button type="submit" >Құру</button>
+            <a href="{% url 'login' %}">Сізде аккаунт бар ма? Кіру</a>
         </form>
     </div>
 

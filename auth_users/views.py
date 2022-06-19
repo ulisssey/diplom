@@ -71,7 +71,7 @@ def categories(request):
 
 def category(request, categories):
     items = Item.objects.all().filter(category__categories=categories)
-    p = Paginator(items, 4)
+    p = Paginator(items, 12)
     page_num = request.GET.get('page', '1')
     page = p.page(page_num)
     nums = [x for x in range(1, p.num_pages + 1)]
@@ -143,7 +143,7 @@ def get_watch_list(request, pk):
         wl.watchlist = pk
         wl.author_id = request.user.id
         wl.save()
-        return redirect('index')
+        return redirect('show_watchlist')
 
 
 @login_required(login_url='login')
@@ -211,6 +211,8 @@ def decrease_quantity(request, pk):
     if order_item.quantity > 0:
         order_item.quantity -= 1
         order_item.save()
+        if order_item.quantity == 0:
+            OrderItem.delete(order_item)
     return redirect('show_cart')
 
 
