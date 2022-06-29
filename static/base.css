@@ -574,6 +574,12 @@ hr {
     align-items: center;
 }
 
+@media only screen and (max-width: 1200px) {
+    .category-items img {
+        max-height: 100px;
+    }
+}
+
 .category-items a {
     text-decoration: none;
     color: black;
